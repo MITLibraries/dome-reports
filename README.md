@@ -12,7 +12,7 @@ This project takes as a given the existing dome.mit.edu instance and the underly
 
   <description>
 
-- Python3 with libraries: sqlite, numpy and pandas
+- Python3 with libraries: sqlite, numpy and pandas [Note: we're currently testing with Python 3.7]
 
     for excel spreadsheet support in pandas, the following may be required:
 
