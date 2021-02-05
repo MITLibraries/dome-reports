@@ -8,8 +8,15 @@ from sys import argv, exit
 #from xhtml2pdf import pisa
 from contextlib import closing
 
+"""
+collection_item_counts.py
+ - query the dome reports database for the monthly counts of items per collection
+ - create reports of these counts in various formats
 
+"""
 def main(argv):
+
+    dbfile = "drp.db"
 
     month = year = 0
     fmts = ''
@@ -20,7 +27,7 @@ def main(argv):
     XLSX = False
 
     try:
-        opts, args = getopt.getopt(argv,"hm:y:f:",["month=","year=","fmts="])
+        opts, args = getopt.getopt(argv,"hm:y:f:d:",["month=","year=","fmts=","testdb="])
     except getopt.GetoptError:
         print_help()
         exit(2)
@@ -38,6 +45,9 @@ def main(argv):
             HTML = ('h' in fmts)
             MARKDOWN = ('m' in fmts)
             XLSX = ('x' in fmts)
+        elif opt in ("-d", "--testdb"):
+            dbfile = arg
+            print("using test db")
 
     #print(f"for {year} with formats {fmts}")
 
@@ -53,20 +63,29 @@ def main(argv):
     print("Extracting and formatting Dome Collection Item Count report")
     print(f"for year {year}")
 
-    query1 = ("SELECT comm.name as Community, coll.name as Collection, month, item_count "
+    query1 = ("SELECT comm.short_name as Community, coll.short_name as Collection, month, item_count "
           "FROM Community comm JOIN Collection coll ON comm.uuid = coll.comm_uuid "
-          "JOIN ItemCount itc ON coll.uuid = itc.coll_uuid "
-          "WHERE year = ? "
+          "JOIN Monthly_Item_Count itc ON coll.uuid = itc.coll_uuid "
+          "WHERE year = ? AND coll.reportable = 1 "
           "ORDER BY coll.comm_uuid, coll.name;")
 
-    with closing(sqlite3.connect("drp_db2")) as conn:
-        with closing(conn.cursor()) as cursor:
-            rows = cursor.execute(query1, (year,)).fetchall()
-    print(f'count of rows: {len(rows)}')
+    rows = None
+
+    try:
+        with closing(sqlite3.connect(dbfile)) as conn:
+            with closing(conn.cursor()) as cursor:
+                rows = cursor.execute(query1, (year,)).fetchall()
+    except sqlite3.Warning as w:
+        print("SQLite Warning: " + str(w))
+    except sqlite3.Error as e:
+        print("SQLite Error: " + str(e))
+        exit(2)
 
     if len(rows) == 0:
         print(f"No data for year {year}")
         exit(1)
+    else:
+        print(f'count of rows: {len(rows)}')
 
     df = pd.DataFrame(rows)
 
