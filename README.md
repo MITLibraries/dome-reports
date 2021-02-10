@@ -95,6 +95,17 @@ There is a uniqueness constraint for the collection, year and month, so that mul
 In the event of an invalid data load, all of that data will need to be deleted manually from the database
 prior to loading the correct data.
 
+## Longer term processing issues
+
+Various problems can arise with sequential processing across difference servers and applications over many months and years.  The following outlines how some of this is handled, especially in the automated aspects.
+
+**Duplicate processing of import files**  The SQLite database maintains a table listing all processed filenames.  This will be checked before attempting an import on a file.  In addition, processed files in the /imports directory will be automatically moved to the /import/completed directory.  To be determined: deleting or moving completed files at some point.
+
+**Missing import files or lapses in process**  External factors may interfere with monthly processing or access to the source database and repository.  The report generation scripts will adapt to the possibility of missing data with codes such as N/A (not available) and so forth.  Attempting to capture data from previous months based on accession timestamps is not currently envisioned.
+
+**Log of events and errors**  There is a table named "Log" in the database which will store events and errors with timestamps in order to assist with tracking problems.
+
+**Time-series intervals**  Currently, the monthly reports are set to appear per calendar year in single reports.  Combining multiple reports after the fact should provide adequate access to different report intervals.
 
 ## Ad hoc reports
 
