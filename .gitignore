@@ -1,0 +1,35 @@
+# ---   .gitignore
+
+# SQLite3 databases 
+drp.db
+tests/*.db
+
+# data files for processing by application 
+imports/
+*.tsv
+*.csv
+
+# application output
+reports/
+logs/
+tmp/
+
+# directories to leave notes, etc.
+dev_misc/
+tmp/
+
+# Python
+.env
+.venv
+env/
+venv/
+env.bak/
+venv.bak/
+*.so
+*.pyc
+__pycache__/
+
+# Miscellaneous
+*.DS_Store
+
+
