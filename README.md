@@ -6,7 +6,7 @@ A project to generate descriptive reports from the Postgres database underlying 
 
 #### An Operations and Data Flow Diagram
 
-[Diagram for the Dome Reports process] (.docs/automation-workflow.png)
+[Diagram for the Dome Reports process] (docs/automation-workflow.png)
 
 ## Setup
 
