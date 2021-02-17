@@ -2,13 +2,15 @@
 
 ## Synopsis
 
-A project to generate reports from the Postgres database underlying Dome, the **dome.mit.edu** repository.  After querying Postgres for descriptive statistics, the resulting files are transferred to the local reporting workstation and stored in an ongoing SQLite database.  Content reports are then generated using Python 3 scripts from the command line.
+A project to generate descriptive reports from the Postgres database underlying Dome, the **dome.mit.edu** repository.  Usage reports are not included.  After querying Postgres, the resulting files are transferred to the local reporting workstation and stored in an ongoing SQLite database.  Content reports in a variety of formats are then generated and distributed.
+
+#### An Operations and Data Flow Diagram
+
+[Diagram for the Dome Reports process] (.docs/automation-workflow.png)
 
 ## Setup
 
-- SQL queries are run against the Postgres database on a separate server in a separate process from the report generation as specified by the system administrator.
-  The generated tab-delimited data files (.tsv) are transferred to the local workstation for processing.
-  [TODO: query details]
+- SQL queries are run against the Postgres database on a separate server in a separate process from the report generation as specified by the system administrator.  The generated tab-delimited data files (.tsv) are transferred to the local workstation for processing.
 
 - The local workstation requires preloading the following software:
 
@@ -27,13 +29,13 @@ A project to generate reports from the Postgres database underlying Dome, the **
         ├── db/                 #  sqlite database scripts
         ├── docs/               # 
         ├── imports/            #  for Postgres query result data files (.tsv)
-        │   └── done/           #  for import files after successful reporting
+        ├── imports_completed   #  for import files after successful reporting
         ├── rpts/               #  generated reports
         ├── tests/              #  for an SQLite database with test data
         │
         ├── drp-db              #  the SQLite3 database (do not delete! keep a backup!)
         ├── import.py           #  Python script with options for all imports of Postgres query data
-        ├── <...rpt...>.py      #  various Python scripts for the different reports
+        ├── <...>.py            #  various Python scripts for the different reports
         │
         ├── README.md
         └── LICENSE
@@ -42,7 +44,7 @@ A project to generate reports from the Postgres database underlying Dome, the **
 
 ## Postgres queries
 
-  [TODO:  querying details]
+  The model shell script for querying Postgres is: drp_pg.sh .  
 
   The resulting tab-delimited data files are produced for the Dome Communities, Collections and the specific for the available reports.
   The filenames are formatted as:  {name}-{YYMM}.tsv, e.g. comm-2102.tsv, coll-2102.tsv, itc-2102.tsv for community, collection and item-counts for February 2021.
@@ -51,7 +53,7 @@ A project to generate reports from the Postgres database underlying Dome, the **
 
 ## SQLite database imports
 
-The SQLite database "drp.db" contains tables for the Dome Community and Collection entities which are the standard DSpace containers for repository items.  For reporting purposes it is useful to maintain additional data for these entities.  Here are the fields for parallel SQLite  tables:
+The SQLite database "drp.db" contains tables for the Dome Community and Collection entities which are the standard DSpace containers for repository items.  For reporting purposes it is useful to maintain additional data for these entities.  The fields for parallel SQLite tables are:
 
 #### Community 
 ```    
@@ -99,11 +101,11 @@ prior to loading the correct data.
 
 Various problems can arise with sequential processing across difference servers and applications over many months and years.  The following outlines how some of this is handled, especially in the automated aspects.
 
-**Duplicate processing of import files**  The SQLite database maintains a table listing all processed filenames.  This will be checked before attempting an import on a file.  In addition, processed files in the /imports directory will be automatically moved to the /import/completed directory.  To be determined: deleting or moving completed files at some point.
+**Duplicate processing of import files**  The SQLite database maintains a table named "Files_Processed" that lists all processed filenames.  This will be checked before attempting an import on a file.  In addition, processed files in the /imports directory will be automatically moved to the /imports_completed directory.  To be determined: deleting or moving completed files at some point.
 
 **Missing import files or lapses in process**  External factors may interfere with monthly processing or access to the source database and repository.  The report generation scripts will adapt to the possibility of missing data with codes such as N/A (not available) and so forth.  Attempting to capture data from previous months based on accession timestamps is not currently envisioned.
 
-**Log of events and errors**  There is a table named "Log" in the database which will store events and errors with timestamps in order to assist with tracking problems.
+**Log of events and errors**  There is a log file "logs/drp.log" which sstore events and errors with timestamps in order to assist with tracking problems.
 
 **Time-series intervals**  Currently, the monthly reports are set to appear per calendar year in single reports.  Combining multiple reports after the fact should provide adequate access to different report intervals.
 
@@ -130,6 +132,11 @@ Command line options allow for different format types, e.g. HTML, ASCII, Excel a
 [TODO]
 It would be handy and efficient if the Dome Reports could be posted in a Community/Collection in Dome itself.
 
+## Process Automation
+
+A major goal with the project is to automate each monthly production run. 
+Logging and notification of production run status will be featured. 
+[TODO: Describe the "master" shell script]
 
 ## Tests
 

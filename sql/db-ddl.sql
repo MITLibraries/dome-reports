@@ -38,6 +38,11 @@ CREATE TABLE Monthly_Item_Count (
     FOREIGN KEY (coll_uuid) REFERENCES Collection (uuid)
 );
 
-CREATE INDEX idx_comm_uuid ON Collection(comm_uuid);
-CREATE INDEX idx_coll_uuid ON Monthly_Item_Count(coll_uuid);
+CREATE TABLE FilesProcessed (
+    name         TEXT,
+    timestamp    TEXT
+);
 
+CREATE INDEX idx_comm_uuid ON Collection(comm_uuid);
+CREATE INDEX idx_mic_uuid ON Monthly_Item_Count(coll_uuid);
+CREATE INDEX idx_fp_name ON FilesProcessed(name);
