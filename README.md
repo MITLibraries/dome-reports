@@ -12,8 +12,9 @@ A project to generate descriptive reports from the Postgres database underlying 
 
 - SQL queries are run against the Postgres database on a separate server in a separate process from the report generation as specified by the system administrator.  The generated tab-delimited data files (.tsv) are transferred to the local workstation for processing.
 
-- The local workstation requires preloading the following software:
+- The local reporting workstation is a Mac running OS X and requires the following software:
 
+    - The System shell is **zsh**.
     - Python 3.7.x or higher with libraries:  sqlite, pandas, numpy (tabulate for markdown support)
     - SQLite3 database (included in Python 3.7+, but is installed separately for optional non-Python access)
 
@@ -21,7 +22,7 @@ A project to generate descriptive reports from the Postgres database underlying 
       
           -> pip3 install --upgrade wheel
           -> pip3 install --upgrade setuptools
-
+    
 - The directory/file structure in production:
 
 ```
@@ -30,7 +31,7 @@ A project to generate descriptive reports from the Postgres database underlying 
         ├── docs/               # 
         ├── imports/            #  for Postgres query result data files (.tsv)
         ├── imports_completed   #  for import files after successful reporting
-        ├── rpts/               #  generated reports
+        ├── reports/            #  generated reports
         ├── tests/              #  for an SQLite database with test data
         │
         ├── drp-db              #  the SQLite3 database (do not delete! keep a backup!)
@@ -122,9 +123,23 @@ The Python 3 scripts to create reports on the Dome contents are run from the com
 
 ### collection-item-counts.py
 
-This report is a yearly time-series accounting of the item contents of each collection in Dome in monthly increments.
+This report is a yearly time-series accounting of the item contents of each collection in Dome in monthly increments 
+in different and multiple format types, e.g. HTML, ASCII, Excel and Markdown. The default year is the current year. 
 
-Command line options allow for different format types, e.g. HTML, ASCII, Excel and Markdown. 
+Command line usage: 
+```
+  python3 create_reports.py -h(elp) -y <year> -f <formats> -d <database> -o <output dir> -s <console output>
+  
+  where the formats can be: 
+      - a = ascii (default) 
+      - c = csv 
+      - h = html 
+      - m = markdown 
+      - x = xlsx (excel)
+      - s = screen console display (default is False)
+      
+  example:  python3 create_reports.py -fhx -d./tests/test.db -o./tests     
+```
 
 
 ## Report Distribution
@@ -135,12 +150,14 @@ It would be handy and efficient if the Dome Reports could be posted in a Communi
 ## Process Automation
 
 A major goal with the project is to automate each monthly production run. 
-Logging and notification of production run status will be featured. 
-[TODO: Describe the "master" shell script]
+Logging and notification of the production run status will be featured. 
+[TODO: Describe the "master.zsh" shell script]
 
 ## Tests
 
-A test database is available in the "tests" directory and can be specified in a command-line argument for some report scripts.
+A test databases should be created in the "tests" directory and can be specified in a command-line argument for some report scripts.  To create an empty test database for this project use the ./sql/drp.ddl to define the tables, etc.
+
+It is very important to keep the primary database free of unintended test data. Bad data can be removed with a tool like DB Browser for SQLite.  Consider a separate project installation specifically for testing.
 
 [TODO: Describe and show how to run the tests with command line examples.]
 

@@ -1,33 +1,40 @@
 import getopt
 import datetime
 import calendar
+import logging
+import logging.config
 import sqlite3
 import pandas as pd
 import numpy as np
+
 from sys import argv, exit
 #from xhtml2pdf import pisa
 from contextlib import closing
 
-"""
-collection_item_counts.py
- - query the dome reports database for the monthly counts of items per collection
- - create reports of these counts in various formats
 
-"""
 def main(argv):
 
-    dbfile = "drp.db"
+    db_filepath = "drp.db"
 
+    # month is used only in the names of the report files
     month = year = 0
-    fmts = ''
+    fmts = 'a'
+    output_dir = "./reports"
+
     ASCII = True  #default
     CSV = False
     HTML = False
     MARKDOWN = False
     XLSX = False
+    SCREEN = False 
 
+    logging.config.fileConfig('logs/drplog2.config')
+    logging.info("start of report creation")
+
+    # Commandline options
     try:
-        opts, args = getopt.getopt(argv,"hm:y:f:d:",["month=","year=","fmts=","testdb="])
+        opts, args = getopt.getopt(argv,"hy:f:d:o:",
+                  ["year=","fmts=","db=","output_dir"])
     except getopt.GetoptError:
         print_help()
         exit(2)
@@ -44,27 +51,26 @@ def main(argv):
             CSV = ('c' in fmts)
             HTML = ('h' in fmts)
             MARKDOWN = ('m' in fmts)
+            SCREEN = ('s' in fmts)
             XLSX = ('x' in fmts)
         elif opt in ("-d", "--testdb"):
-            dbfile = arg
-            print("using test db")
-
-    #print(f"for {year} with formats {fmts}")
+            db_filepath = arg
+        elif opt in ("-o", "--output_dir"):
+            output_dir = arg
 
     today = datetime.date.today()
 
     if year == 0:
-        #default to year of previous month
-        if today.month == 1:
-            year = today.year - 1
-        else:
-            year = today.year
+       year = today.year
+       month = today.month
 
-    print("Extracting and formatting Dome Collection Item Count report")
-    print(f"for year {year}")
+    logging.info(f"Creating Collection Item Count report for {year}")
+    logging.info(f"Using database file {db_filepath}")
 
-    query1 = ("SELECT comm.short_name as Community, coll.short_name as Collection, month, item_count "
-          "FROM Community comm JOIN Collection coll ON comm.uuid = coll.comm_uuid "
+    query1 = ("SELECT comm.short_name as Community, "
+          "coll.short_name as Collection, month, item_count "
+          "FROM Community comm "
+          "JOIN Collection coll ON comm.uuid = coll.comm_uuid "
           "JOIN Monthly_Item_Count itc ON coll.uuid = itc.coll_uuid "
           "WHERE year = ? AND coll.reportable = 1 "
           "ORDER BY coll.comm_uuid, coll.name;")
@@ -72,25 +78,22 @@ def main(argv):
     rows = None
 
     try:
-        with closing(sqlite3.connect(dbfile)) as conn:
+        with closing(sqlite3.connect(db_filepath)) as conn:
             with closing(conn.cursor()) as cursor:
                 rows = cursor.execute(query1, (year,)).fetchall()
     except sqlite3.Warning as w:
-        print("SQLite Warning: " + str(w))
+        logging.warning("SQLite Warning: " + str(w))
     except sqlite3.Error as e:
-        print("SQLite Error: " + str(e))
+        logging.error("SQLite Error: " + str(e))
         exit(2)
 
     if len(rows) == 0:
-        print(f"No data for year {year}")
+        logging.error(f"No data in {db_filepath} for year {year}")
         exit(1)
     else:
-        print(f'count of rows: {len(rows)}')
+        logging.debug(f'count of item count data points: {len(rows)}')
 
     df = pd.DataFrame(rows)
-
-    #print(df);
-
     df.columns = ["Community", "Collection", "Month", "Count"]
 
     #pt = df.pivot_table( index=[0], values=[2], columns=[1], aggfunc=max)
@@ -103,36 +106,44 @@ def main(argv):
     #get array of corresponding months
     pt.columns = [calendar.month_abbr[i] for i in ar_mo_int]
 
-    outfilename = f'drp_col_it_{year}-{month}'
+    rpt_filepath = f'{output_dir}/drp_col_it_{year}-{month}'
 
     if ASCII:
-        with open(f'{outfilename}.txt', 'w') as ascii_out:
+        with open(f'{rpt_filepath}.txt', 'w') as ascii_out:
             table = pt.to_string(index = True)
             ascii_out.write(add_common_header(table, year))
+            logging.info(f"created: {rpt_filepath}.txt") 
     if CSV:  #no headers??
-        pt.to_csv(f'{outfilename}.csv', index = True)
+        pt.to_csv(f'{rpt_filepath}.csv', index = True)
+        logging.info(f"created: {rpt_filepath}.csv") 
     if HTML:
-        with open(f'{outfilename}.html', 'w') as html_out:
+        with open(f'{rpt_filepath}.html', 'w') as html_out:
             html = pt.to_html().replace(" style=\"text-align: right;\"", "", 1)
             html_out.write(format_html(html, year))
+        logging.info(f"created: {rpt_filepath}.html") 
     if MARKDOWN:
-        with open(f'{outfilename}.md', 'w') as md_out:
+        with open(f'{rpt_filepath}.md', 'w') as md_out:
             table = pt.to_markdown(index = True)
             md_out.write(format_markdown(table, year))
+            logging.info(f"created: {rpt_filepath}.md") 
     if XLSX:
-        pt.to_excel(f'{outfilename}.xlsx', index = True)
+        pt.to_excel(f'{rpt_filepath}.xlsx', index = True)
+        logging.info(f"created: {rpt_filepath}.xlsx") 
 
-    #for dev
-    print(add_common_header(pt.to_string(index = True), year))
+    # print to console
+    if SCREEN:
+        print(add_common_header(pt.to_string(index = True), year))
 
-    print("\nend of program")
-
+    logging.info("Report creation processing completed\n")
+    logging.shutdown()
 
 def print_help():
-    print('Usage: drp.py -h(elp) -y <year> -f <formats>')
-    print('where a = ascii (default), c = csv, h = html, m=markdown')
-    print('default year will be the calendar year of the previous month')
-
+    print('Usage: python3 create_rpts.py -h(elp) -y <year> -f <formats>' \
+          ' -d <database> -o <output dir> -s <console output>')
+    print('with formats: a = ascii (default), c = csv, h = html, ' \
+          'm = markdown, x = xlsx (excel), s = screen')
+    print('The default year is the current year ')
+    print('')
 
 """  currently not used
 pdf = open("drp2.pdf", "w+b")
