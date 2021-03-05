@@ -123,8 +123,7 @@ The Python 3 scripts to create reports on the Dome contents are run from the com
 
 ### collection-item-counts.py
 
-This report is a yearly time-series accounting of the item contents of each collection in Dome in monthly increments 
-in different and multiple format types, e.g. HTML, ASCII, Excel and Markdown. The default year is the current year. 
+This report is a yearly time-series accounting of the 'owned' item contents of each collection in Dome in monthly increments in different and multiple format types, e.g. HTML, ASCII, Excel and Markdown. The default year is the current year. 
 
 Command line usage: 
 ```
