@@ -169,7 +169,8 @@ def import_containers(conn, cursor, table, tsv):
 
       logging.info(f"Count of added containers: {nadded}")
 
-    cursor.execute("INSERT INTO FilesProcessed(name, timestamp) VALUES (?, CURRENT_TIMESTAMP);",        (path.basename(tsv), ))
+    cursor.execute("INSERT INTO FilesProcessed(name, timestamp) VALUES " + \
+        "(?, CURRENT_TIMESTAMP);", (path.basename(tsv), ))
     logging.info("recorded processed tsv")
     conn.commit()
     logging.info("committed data from " + path.basename(tsv))
@@ -194,7 +195,8 @@ def import_itemcounts(conn, cursor, tsv):
     cursor.executemany(insert_query, irows)
     logging.info(f"Inserted {len(irows)}") 
 
-    cursor.execute("INSERT INTO FilesProcessed(name, timestamp) VALUES (?, CURRENT_TIMESTAMP);",        (path.basename(tsv), ))
+    cursor.execute("INSERT INTO FilesProcessed(name, timestamp) VALUES " + \
+        "(?, CURRENT_TIMESTAMP);", (path.basename(tsv), ))
     logging.info("recorded processed tsv")
     conn.commit()
     logging.info("committed data from " + path.basename(tsv))

@@ -15,7 +15,6 @@
 
 ### Testing
 
-    - create separate working project directory for testing
     - importance of not accidentally writing test data to SQLite
     - create test data for a full calendar year
 
@@ -29,8 +28,9 @@
 
 ### Report distribution
 
-    - default to mounting files on a server
-      -  email attachment, for a single one-page report
+    - default to email attachment, for a single one-page report
+    - also possible:
+      -  mounting files on a server
       -  Dome collection for reports
       -  content management system (doesn't exist for the MIT Libraries)
 
