@@ -1,6 +1,5 @@
-#!/usr/bin/sh
+#!/usr/bin/zsh
 # shell script to build test deployment directory
-# compatible with zsh
 
 # default location is relative to the pwd, i.e. the top level git directory
 DEFAULT_DIR="../test"
@@ -25,7 +24,7 @@ else
     fi
 fi
 
-SUB_DIRS=(imports imports_completed initial_load logs reports)
+SUB_DIRS=(imports imports_completed initial_load reports)
 
 for subdir in $SUB_DIRS
 do
@@ -36,6 +35,13 @@ do
         echo "Created subdirectory: $subdir"
     fi
 done
+
+if ! cp -R logs/ $TEST_DIR; then
+    echo "ERROR COPYING DIRECTORY logs   Exiting script."
+    exit -1
+else
+    echo "Copied subdirectory logs"
+fi
 
 if ! cp -R postgres/ $TEST_DIR; then
     echo "ERROR COPYING DIRECTORY postgres   Exiting script."
