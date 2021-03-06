@@ -26,7 +26,7 @@ import Postgres extract tsv data to SQLite
 
 CONFIG = {
     'imports_dirpath' : './imports/',
-    'completed_dirpath' : './imports_complete/',
+    'completed_dirpath' : './imports_completed/',
     'db_filepath' : 'drp.db'
 }
 
@@ -137,10 +137,10 @@ def import_containers(conn, cursor, table, tsv):
       return
 
     if table == "Community":
-      query = \
+      insert_query = \
       f"INSERT INTO Community(uuid, name, short_name) VALUES (?, ?, ?)" 
     else:  
-      query = \
+      insert_query = \
       f"INSERT INTO Collection(uuid, comm_uuid, name, short_name) VALUES (?, ?, ?, ?)" 
 
     #get all comm uuids from db
