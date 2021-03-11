@@ -22,24 +22,31 @@ A project to generate descriptive reports from the Postgres database underlying 
       
           -> pip3 install --upgrade wheel
           -> pip3 install --upgrade setuptools
+          
+#### Deploy scripts
+
+- The script **deploy_prod.sh** is a zsh script that creates a parallel directory to be used in production, including: 
+
+    - subdirectories are created
+    - scripts are copied
+    - an SQLite3 database is is created with the necessary tables
     
-- The directory/file structure in production:
+- The script **deploy_test.sh** creates a similar directory in parallel to be used for testing.  The database name is distinct.  Care should be used to avoid moving data into the wrong database.               
+    
+- The directory/file structure in production and test:
 
 ```
-        dome-reports/
-        ├── db/                 #  sqlite database scripts
+        drp_prod/  **or**  drp_test/
         ├── docs/               # 
         ├── imports/            #  for Postgres query result data files (.tsv)
         ├── imports_completed   #  for import files after successful reporting
+        ├── logs
+        ├── postgres            #  scripts for retrieving import data
         ├── reports/            #  generated reports
-        ├── tests/              #  for an SQLite database with test data
         │
-        ├── drp-db              #  the SQLite3 database (do not delete! keep a backup!)
+        ├── drp<...>-db         #  the SQLite3 database (do not delete! keep a backup!)
         ├── import.py           #  Python script with options for all imports of Postgres query data
-        ├── <...>.py            #  various Python scripts for the different reports
-        │
-        ├── README.md
-        └── LICENSE
+        └── <...>.py            #  various Python scripts for the different reports
 
 ```
 
@@ -54,7 +61,7 @@ A project to generate descriptive reports from the Postgres database underlying 
 
 ## SQLite database imports
 
-The SQLite database "drp.db" contains tables for the Dome Community and Collection entities which are the standard DSpace containers for repository items.  For reporting purposes it is useful to maintain additional data for these entities.  The fields for parallel SQLite tables are:
+The SQLite production database "drp_prod.db" contains tables for the Dome Community and Collection entities which are the standard DSpace containers for repository items.  For reporting purposes it is useful to maintain additional data for these entities.  The fields for these SQLite tables are:
 
 #### Community 
 ```    
@@ -84,8 +91,21 @@ out the pre-existing data rows from the import file.
 
 Manually updating these extra fields can be done using an applications such as DB Browser for SQLite.
 
+#### Monthly data imports: import_data.py
 
-#### Report: Collection_Item_Counts.py
+The monthly import script is for reporting once a month.  It will return an error if item count data for a given month is repeated.  In case of correcting errors, the old data will need to be removed manually.  It is possible to skip months which will result in fewer columns in the output reports.
+ 
+Command line usage: 
+```
+  python3 create_reports.py -h(elp) -i <import_dir> -c <complete_dir> -d <database>
+  
+  The default SQLite3 database file is drp_prod.db.
+  The default import directory is ./imports.
+  The default completed directory is ./imports-completed
+  
+```
+
+#### Report: collection_item_counts.py
 ```
         ├─ coll_uuid                # id of containing collection
         ├─ year                     # integer: YYYY
@@ -98,6 +118,10 @@ There is a uniqueness constraint for the collection, year and month, so that mul
 In the event of an invalid data load, all of that data will need to be deleted manually from the database
 prior to loading the correct data.
 
+## Logging
+
+Python standard logging is used in the Python scripts. Log entries are written by default to both the console and the file "logs/drp.log" to store events and errors with timestamps in order to assist with tracking problems.  There is an alternate logging configuration file to specify writing only to the file and not to the console.
+
 ## Longer term processing issues
 
 Various problems can arise with sequential processing across difference servers and applications over many months and years.  The following outlines how some of this is handled, especially in the automated aspects.
@@ -105,8 +129,6 @@ Various problems can arise with sequential processing across difference servers 
 **Duplicate processing of import files**  The SQLite database maintains a table named "Files_Processed" that lists all processed filenames.  This will be checked before attempting an import on a file.  In addition, processed files in the /imports directory will be automatically moved to the /imports_completed directory.  To be determined: deleting or moving completed files at some point.
 
 **Missing import files or lapses in process**  External factors may interfere with monthly processing or access to the source database and repository.  The report generation scripts will adapt to the possibility of missing data with codes such as N/A (not available) and so forth.  Attempting to capture data from previous months based on accession timestamps is not currently envisioned.
-
-**Log of events and errors**  There is a log file "logs/drp.log" which sstore events and errors with timestamps in order to assist with tracking problems.
 
 **Time-series intervals**  Currently, the monthly reports are set to appear per calendar year in single reports.  Combining multiple reports after the fact should provide adequate access to different report intervals.
 

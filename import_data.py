@@ -27,7 +27,7 @@ import Postgres extract tsv data to SQLite
 CONFIG = {
     'imports_dirpath' : './imports/',
     'completed_dirpath' : './imports_completed/',
-    'db_filepath' : 'drp.db'
+    'db_filepath' : 'drp-prod.db'
 }
 
 def main(argv):

@@ -14,7 +14,7 @@ from contextlib import closing
 
 def main(argv):
 
-    db_filepath = "drp.db"
+    db_filepath = "drp-prod.db"
 
     # month is used only in the names of the report files
     month = year = 0
