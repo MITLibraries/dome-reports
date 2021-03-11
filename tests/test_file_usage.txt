@@ -1,10 +1,5 @@
-The tests/ subdirectory can contain SQLite databases 
-with a .db extension but these will be ignored by Git.
-Do not add databases with other extensions.
+The tests/ subdirectory in to repository is for test data.
 
-Test data files *.tsv and *.csv will likewise be ignored.
-Do not add temporary data files with other extensions
-unless they are located in the tmp/ directory.
+The script test_data.sql is to be run directly by SQLite3 and loads initial community and collection entities as well as item counts for Jan to Apr of 2021.
 
-Database schema and query files can be placed here and
-will be managed by Git.
+The .tsv files are test data files used for simulating monthly loads and cover May to Dec of 2021.  Note that the Dec files introduce a new collection.  
