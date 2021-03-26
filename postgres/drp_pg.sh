@@ -27,7 +27,7 @@ ITC='itc-'$YYMM'.tsv'
 
 #  -- extract communities
 
-sudo -u postgres psql -d dspace -AF \$'\t' --no-align -t -c 'SELECT comm.uuid, mv.text_value as name, mv.text_value as short_name FROM collection comm INNER JOIN metadatavalue mv ON comm.uuid = mv.dspace_object_id WHERE mv.metadata_field_id = 70;' > $COMM
+sudo -u postgres psql -d dspace -AF \$'\t' --no-align -t -c 'SELECT comm.uuid, mv.text_value as name, mv.text_value as short_name FROM community comm INNER JOIN metadatavalue mv ON comm.uuid = mv.dspace_object_id WHERE mv.metadata_field_id = 70;' > $COMM
 
 #  -- extract collections
 
