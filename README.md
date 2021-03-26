@@ -45,7 +45,7 @@ A project to generate descriptive reports from the Postgres database underlying 
         ├── reports/            #  generated reports
         │
         ├── drp<...>-db         #  the SQLite3 database (do not delete! keep a backup!)
-        ├── import.py           #  Python script with options for all imports of Postgres query data
+        ├── import_data.py      #  Python script with options for all imports of Postgres query data
         └── <...>.py            #  various Python scripts for the different reports
 
 ```
@@ -97,7 +97,7 @@ The monthly import script is for reporting once a month.  It will return an erro
  
 Command line usage: 
 ```
-  python3 create_reports.py -h(elp) -i <import_dir> -c <complete_dir> -d <database>
+  python3 import_data.py -h(elp) -i <import_dir> -c <complete_dir> -d <database>
   
   The default SQLite3 database file is drp_prod.db.
   The default import directory is ./imports.
@@ -149,7 +149,7 @@ This report is a yearly time-series accounting of the 'owned' item contents of e
 
 Command line usage: 
 ```
-  python3 create_reports.py -h(elp) -y <year> -f <formats> -d <database> -o <output dir> -s <console output>
+  python3 collection-item-counts.py -h(elp) -y <year> -f <formats> -d <database> -o <output dir> -s <console output>
   
   where the formats can be: 
       - a = ascii (default) 
@@ -159,13 +159,13 @@ Command line usage:
       - x = xlsx (excel)
       - s = screen console display (default is False)
       
-  example:  python3 create_reports.py -fhx -d./tests/test.db -o./tests     
+  example:  python3 collection-item-counts.py -fhx -d./tests/test.db -o./tests     
 ```
 
 
 ## Report Distribution
 
-[TODO]
+Initially, reports can be emailed to specified, responsible parties.
 It would be handy and efficient if the Dome Reports could be posted in a Community/Collection in Dome itself.
 
 ## Process Automation
