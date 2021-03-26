@@ -36,21 +36,21 @@ do
     fi
 done
 
-if ! cp -R logs/ $PROD_DIR; then
+if ! cp -R logs $PROD_DIR; then
     echo "ERROR COPYING DIRECTORY logs   Exiting script."
     exit -1
 else
     echo "Copied subdirectory logs"
 fi
 
-if ! cp -R postgres/ $PROD_DIR; then
+if ! cp -R postgres $PROD_DIR; then
     echo "ERROR COPYING DIRECTORY postgres   Exiting script."
     exit -1
 else
     echo "Copied subdirectory postgres"
 fi
 
-if ! cp -R sql/ $PROD_DIR; then
+if ! cp -R sql $PROD_DIR; then
     echo "ERROR COPYING DIRECTORY sql   Exiting script."
     exit -1
 else
