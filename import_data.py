@@ -68,6 +68,7 @@ def main(argv):
     # process the import files
     try:
       with closing(sqlite3.connect(CONFIG['db_filepath'])) as conn:
+        conn.execute("PRAGMA foreign_keys = 1")
         with closing(conn.cursor()) as cursor:
 
           [import_containers(conn, cursor, "Community", fp) \
@@ -119,7 +120,7 @@ def start_import(cursor, tsv):
 
     with open (tsv, 'r') as f:
       #for irow in csv.reader(f,delimiter='\t'):
-      irows = [irow for irow in csv.reader(f, delimiter='\t')]
+      irows = [irow for irow in csv.reader(f, delimiter='|')]
       # print(f"count of rows in {tsv}: " + str(len(irows))) 
     return irows
 
@@ -147,9 +148,11 @@ def import_containers(conn, cursor, table, tsv):
     db_rows = cursor.execute("SELECT uuid FROM " + table).fetchall()
     logging.debug(table + " row count: " + str(len(db_rows)))
 
+    nadded = 0;
     if len(db_rows) == 0:
       logging.info("db container table is empty; loading all tsv rows")
       cursor.executemany(insert_query, irows)
+      nadded = len(irows)
     else:
       # filtering tsv for new rows
       db_uuids = set()
