@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-A project to generate descriptive reports from the Postgres database underlying Dome, the **dome.mit.edu** repository.  Usage reports are not included.  After querying Postgres, the resulting files are transferred to the local reporting workstation and stored in an ongoing SQLite database.  Content reports in a variety of formats are then generated and distributed.
+A project to generate descriptive reports for the digital collection in Dome, the **dome.mit.edu** repository.  Usage reports are not included.  Data is obtained by querying the underlying Postgres database for Dome.  The resulting field-delimited files are transferred to the local reporting workstation where the data is imported into an ongoing SQLite database.  Content reports in a variety of formats are then generated and distributed.
 
 #### An Operations and Data Flow Diagram
 
@@ -10,7 +10,7 @@ A project to generate descriptive reports from the Postgres database underlying 
 
 ## Setup
 
-- SQL queries are run against the Postgres database on a separate server in a separate process from the report generation as specified by the system administrator.  The generated tab-delimited data files (.tsv) are transferred to the local workstation for processing.
+- SQL queries are run against the Postgres database on a separate server as specified by the system administrator.  The generated tab-delimited data files (.tsv) are transferred to the local reporting workstation.
 
 - The local reporting workstation is a Mac running OS X and requires the following software:
 
@@ -19,34 +19,50 @@ A project to generate descriptive reports from the Postgres database underlying 
     - SQLite3 database (included in Python 3.7+, but is installed separately for optional non-Python access)
 
       For excel spreadsheet support in pandas, the following may be required:
-      
+
           -> pip3 install --upgrade wheel
           -> pip3 install --upgrade setuptools
-          
+
+#### Recommended overall directory structure
+
+The following directory setup is aimed at providing maximum separation between a git development environment,
+a production environment and a test environment.  Python virtual environments are optional, but further separating the Python virtual environments allows easily switching between, say, different versions of Python.
+
+        drp_root                # name can vary
+        ├──git_repo             # clone or unzip the github repository here, the subdirectory name can vary
+        ├──prod                 # production area; created by the deploy_prod.sh script
+        ├──test                 # test area; created by the deploy_test.sh script
+        ├──venv3.7              # optional python virtual environment 
+        ├──venv3.8              # as needed
+        ├──tmp                  # as needed
+ 
+
 #### Deploy scripts
 
-- The script **deploy_prod.sh** is a zsh script that creates a parallel directory to be used in production, including: 
+The deploy scripts **deploy_prod.sh** and **deploy_test.sh** are used to create the separate production and test environments and populated them with the required subdirectories and files.  There are no interdependencies between **prod** and  **test**.
+
+Both scripts do the following: 
 
     - subdirectories are created
     - scripts are copied
-    - an SQLite3 database is is created with the necessary tables
-    
-- The script **deploy_test.sh** creates a similar directory in parallel to be used for testing.  The database name is distinct.  Care should be used to avoid moving data into the wrong database.               
-    
-- The directory/file structure in production and test:
+    - an SQLite3 database is created with the necessary tables; the databases names are distinct.
+
+Care should be used to avoid moving data into the wrong database.
+
+- The directory/file structure in both **prod** and **test**:
 
 ```
-        drp_prod/  **or**  drp_test/
-        ├── docs/               # 
-        ├── imports/            #  for Postgres query result data files (.tsv)
-        ├── imports_completed   #  for import files after successful reporting
+        ├── docs/                      # 
+        ├── imports/                   #  for Postgres query result data files (.tsv)
+        ├── imports_completed          #  for import files after successful reporting
         ├── logs
-        ├── postgres            #  scripts for retrieving import data
-        ├── reports/            #  generated reports
+        ├── postgres                   #  scripts for retrieving import data
+        ├── reports/                   #  generated reports
         │
-        ├── drp<...>-db         #  the SQLite3 database (do not delete! keep a backup!)
-        ├── import_data.py      #  Python script with options for all imports of Postgres query data
-        └── <...>.py            #  various Python scripts for the different reports
+        ├── drp<...>-db                #  the SQLite3 database (do not delete! keep a backup!)
+        ├── import_data.py             #  Python script with options for all imports of Postgres query data
+        ├── collection_item_counts.py  #  Python script to generate time-series reports of item counts for all collections 
+        └── <...>.py                   #  other Python scripts for the different reports
 
 ```
 
@@ -91,6 +107,14 @@ out the pre-existing data rows from the import file.
 
 Manually updating these extra fields can be done using an applications such as DB Browser for SQLite.
 
+#### Handling of the SQLite database over time - differences with the Dome database
+
+The SQLite database for this project is intended to supply reports over time and, consequently, represent the data
+over the future lifespan of Dome.  In the event that, for example, a collections is deleted from Dome, the corresponding data
+should not be deleted from the SQLite database in order that time-series reports can accurately represent the relevant
+time-span.  For the Dome communities and collections, the SQLite database does not represent any current state of Dome.
+For things like item counts, snapshots over time are recorded and the relevant year and month are recorded for each count.
+
 #### Monthly data imports: import_data.py
 
 The monthly import script is for reporting once a month.  It will return an error if item count data for a given month is repeated.  In case of correcting errors, the old data will need to be removed manually.  It is possible to skip months which will result in fewer columns in the output reports.
@@ -128,7 +152,8 @@ Various problems can arise with sequential processing across difference servers 
 
 **Duplicate processing of import files**  The SQLite database maintains a table named "Files_Processed" that lists all processed filenames.  This will be checked before attempting an import on a file.  In addition, processed files in the /imports directory will be automatically moved to the /imports_completed directory.  To be determined: deleting or moving completed files at some point.
 
-**Missing import files or lapses in process**  External factors may interfere with monthly processing or access to the source database and repository.  The report generation scripts will adapt to the possibility of missing data with codes such as N/A (not available) and so forth.  Attempting to capture data from previous months based on accession timestamps is not currently envisioned.
+**Missing import files or lapses in process**  External factors may interfere with monthly processing or access to the source database and repository.  The report generation scripts may adapt to the possibility of missing data with codes such as N/A (not available) and so forth.
+In the event of reports not run in a given month, the corresponding month column may not appear, instead.  Attempting to capture data from previous months based on accession timestamps is not currently envisioned.
 
 **Time-series intervals**  Currently, the monthly reports are set to appear per calendar year in single reports.  Combining multiple reports after the fact should provide adequate access to different report intervals.
 
@@ -174,13 +199,12 @@ A major goal with the project is to automate each monthly production run.
 Logging and notification of the production run status will be featured. 
 [TODO: Describe the "master.zsh" shell script]
 
-## Tests
+## Testing
 
-A test databases should be created in the "tests" directory and can be specified in a command-line argument for some report scripts.  To create an empty test database for this project use the ./sql/drp.ddl to define the tables, etc.
+Sample test data is provided in the GitHub repository.
 
-It is very important to keep the primary database free of unintended test data. Bad data can be removed with a tool like DB Browser for SQLite.  Consider a separate project installation specifically for testing.
+Tests should be run in the test directory as created by the deploy_test.sh script.
 
-[TODO: Describe and show how to run the tests with command line examples.]
 
 ## Contributors
 
