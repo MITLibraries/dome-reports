@@ -106,6 +106,11 @@ def main(argv):
     #get array of corresponding months
     pt.columns = [calendar.month_abbr[i] for i in ar_mo_int]
 
+    # add column totals as last row
+    totals = pt.sum(numeric_only=True, axis=0)
+    totals.name = ("Totals", "")
+    pt = pt.append(totals)
+
     rpt_filepath = f'{output_dir}/drp_col_it_{year}-{month}'
 
     if ASCII:
