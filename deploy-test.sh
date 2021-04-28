@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 # shell script to build test deployment directory
 
 # default location is relative to the pwd, i.e. the top level git directory
