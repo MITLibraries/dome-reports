@@ -1,8 +1,9 @@
 #!/usr/bin/sh
-# bash script to remotely query Dome's Postgres DB
+# bash script to remotely query Dome's (dome.mit.edu) Postgres DB
 # for monthly report data
 
 # Amazon AWS Database server: dome6-prod-rds-prod.cvvzvytwmb4n.us-east-1.rds.amazonaws.com
+# remote SQL queries must be run from: domeanalytics-prod.mitlib.net
 
 YYMM=`date +"%y%m"`
 COMM='comm-'$YYMM'.tsv'
