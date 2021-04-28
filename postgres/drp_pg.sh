@@ -1,7 +1,6 @@
 #!/usr/bin/sh
-# bash script to remotely query Dome's (dome.mit.edu) Postgres DB
+# bash script to remotely query Dome's Postgres DB
 # for monthly report data
-
 
 YYMM=`date +"%y%m"`
 COMM='comm-'$YYMM'.tsv'
