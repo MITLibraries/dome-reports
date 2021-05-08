@@ -14,11 +14,33 @@ from contextlib import closing
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment, Font, NamedStyle, Border, Side
 
+'''
+Originally this script only queried the SQLite db for item counts per
+collection, and then produced reports for this in Pandas as specified.
+
+Months later, the special case of a collection with no reports came up.
+Since the query results used to populate the SQLite db did not pull
+rows for empty collections, the reports here did not include said empty
+collections.
+
+As of now (5/7/21) the chosen solution is to add in rows for the empty
+collections based on the complete list of collections in the  SQLite db
+vs. the list of collections in the item count.  In the pandas pivot 
+table, only a single instance of the empty collection is necessary for
+the reports to display properly.
+
+This notion of an 'empty' collection is not entirely accurate, as 
+withdrawn and not-in-archive items are excluded in the Postgres query.
+Linked items are not included either.  But this solution does
+clarify the existence of a collection for which items are not being counted.
+
+'''
 def main(argv):
 
     db_filepath = "drp.db"
 
     # month is used only in the names of the report files
+    # or, in the case of empty collections, it is the default month
     month = year = 0
     fmts = 'a'
     output_dir = "./reports"
@@ -69,7 +91,7 @@ def main(argv):
     logging.info(f"Creating Collection Item Count report for {year}")
     logging.info(f"Using database file {db_filepath}")
 
-    query1 = ("SELECT comm.short_name as Community, "
+    queryCounts = ("SELECT comm.short_name as Community, "
           "coll.short_name as Collection, month, item_count "
           "FROM Community comm "
           "JOIN Collection coll ON comm.uuid = coll.comm_uuid "
@@ -77,12 +99,20 @@ def main(argv):
           "WHERE year = ? AND coll.reportable = 1 "
           "ORDER BY coll.comm_uuid, coll.name;")
 
+    queryColls = ("SELECT comm.short_name  as Community, "
+          "coll.short_name as Collection "
+          "FROM Community comm "
+          "JOIN Collection coll ON comm.uuid = coll.comm_uuid "
+          "WHERE coll.reportable = 1;")
+
     rows = None
+    coll_rows = None
 
     try:
         with closing(sqlite3.connect(db_filepath)) as conn:
             with closing(conn.cursor()) as cursor:
-                rows = cursor.execute(query1, (year,)).fetchall()
+                rows = cursor.execute(queryCounts, (year,)).fetchall()
+                coll_rows = cursor.execute(queryColls,).fetchall()
     except sqlite3.Warning as w:
         logging.warning("SQLite Warning: " + str(w))
     except sqlite3.Error as e:
@@ -95,8 +125,30 @@ def main(argv):
     else:
         logging.debug(f'count of item count data points: {len(rows)}')
 
+    if len(coll_rows) == 0:
+        logging.error(f"Error retrieving collections from db")
+        exit(1)
+    else:
+        logging.debug(f'count of all collections: {len(coll_rows)}')
+
+    dfColl = pd.DataFrame(coll_rows)
+    dfColl.columns = ["Community", "Collection"]
+    logging.info(f"Count of all collections in the db: {len(dfColl)}")
+
     df = pd.DataFrame(rows)
     df.columns = ["Community", "Collection", "Month", "Count"]
+
+    dfCollsWithCounts = df[["Community", "Collection"]].drop_duplicates()
+    dfCollsWithCounts.columns = ["Community", "Collection"]
+
+    if not len(dfCollsWithCounts) == len(dfColl):
+        # https://cmsdk.com/python/pandas-get-rows-which-are-not-in-other-dataframe.html
+        # remove non-empty collections from dfColl, i.e. the colls "with counts"
+        dfColl = dfColl[~dfColl.isin(dfCollsWithCounts.to_dict('list')).all(1)]
+        dfColl['Month'] = month
+        dfColl['Count'] = 0
+        df = df.append(dfColl)
+        logging.info(f"added rows for {len(dfColl)} empty collections")
 
     #pt = df.pivot_table( index=[0], values=[2], columns=[1], aggfunc=max)
     pt = df.pivot_table( index=["Community", "Collection"],
@@ -134,7 +186,9 @@ def main(argv):
             md_out.write(format_markdown(table, year))
             logging.info(f"created: {rpt_filepath}.md") 
     if XLSX:
-        pt.to_excel(f'{rpt_filepath}.xlsx')   
+        # style_xlsx(pt, f'{rpt_filepath}.xlsx')
+
+        pt.to_excel(f'{rpt_filepath}.xlsx')   #, index = True)
         logging.info(f"created: {rpt_filepath}.xlsx") 
 
         style_xlsx(f'{rpt_filepath}.xlsx', len(ar_mo_int), len(pt) + 1)
