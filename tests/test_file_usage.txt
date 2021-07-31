@@ -1,5 +1,5 @@
-The tests/ subdirectory in to repository is for test data.
+The tests/ subdirectory contains test data.
 
 The script test_data.sql is to be run directly by SQLite3 and loads initial community and collection entities as well as item counts for Jan to Apr of 2021.
 
-The .tsv files are test data files used for simulating monthly loads and cover May to Dec of 2021.  Note that the Dec files introduce a new collection.  
+The .csv files are test data files used for simulating monthly loads and cover May to Dec of 2021.  Note that the Dec files introduce a new collection.  
