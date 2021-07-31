@@ -73,7 +73,9 @@ def main(argv):
                 else:
                     itct_rows = query_rpt_data(conn, cursor,
                                             cfg.rpt_year)
-
+    except AssertionError as msg:
+        logging.error(f"Error validating data ingest files: {msg} ")
+        drp.cleanup_and_exit(1)
     except sqlite3.Warning as w:
         logging.warning(f"Ingest warning: {w}")
         drp.cleanup_and_exit(1)
@@ -98,36 +100,31 @@ def main(argv):
     logging.info("End of DRP CICMTS run")
     drp.cleanup_and_exit(0)
 
-
+# ingest any combination of comm, coll, or itct files
+# can raise AssertionError or ValueError
 def run_ingest(conn, cursor):
 
     logging.info("starting data ingest")
     logging.info(f"ingest file dir: {cfg.data_in_dirpath}")
 
-    try:
-        # validate and return the comm, coll, and itct filepaths in that order
-        #infiles = get_ingest_filepaths(cfg.ingest_dicfgth, file_filters)
-        comm_file, coll_file, itct_file  = \
-                      get_ingest_filepaths(cfg.data_in_dirpath,
-                      cfg.data_in_filename_filters)
+    # validate and return the comm, coll, and itct filepaths in that order
+    #infiles = get_ingest_filepaths(cfg.ingest_dicfgth, file_filters)
+    comm_file, coll_file, itct_file  = \
+                  get_ingest_filepaths(cfg.data_in_dirpath,
+                  cfg.data_in_filename_filters)
 
-        # load data from files into db
-        if comm_file is not None:
-            ingest_dome_containers(conn, cursor, "Community", comm_file,
-                               cfg.data_in_field_sep, cfg.data_done_dirpath)
+    # load data from files into db
+    if comm_file is not None:
+        ingest_dome_containers(conn, cursor, "Community", comm_file,
+                           cfg.data_in_field_sep, cfg.data_done_dirpath)
 
-        if coll_file is not None:
-            ingest_dome_containers(conn, cursor, "Collection", coll_file,
-                               cfg.data_in_field_sep, cfg.data_done_dirpath)
+    if coll_file is not None:
+        ingest_dome_containers(conn, cursor, "Collection", coll_file,
+                           cfg.data_in_field_sep, cfg.data_done_dirpath)
 
-        if itct_file is not None:
-             ingest_item_counts(conn, cursor, itct_file,
-                          cfg.data_in_field_sep, cfg.data_done_dirpath)
-
-    except AssertionError as msg:
-        logging.error(f"Error validating data ingest files: {msg} ")
-
-        drp.cleanup_and_exit(1)
+    if itct_file is not None:
+         ingest_item_counts(conn, cursor, itct_file,
+                      cfg.data_in_field_sep, cfg.data_done_dirpath)
 
     logging.info("Ingest complete")
 
@@ -178,12 +175,30 @@ def ingest_dome_containers(conn, cursor, tablename, filepath,
     assert (irows is not None), f"Error reading {filepath.name}"
     assert (len(irows) > 0), f"{filepath.name} is empty"
 
+    # a soft transition to adding the handle as the last field in the csv file
+    # check first row for the number of fields
+    nfields = len(irows[0])
+
     if tablename == "Community":
-        insert_query = \
-        "INSERT INTO Community(uuid, name, short_name) VALUES (?, ?, ?)"
-    else:
-        insert_query = \
-        "INSERT INTO Collection(uuid, comm_uuid, name, short_name) VALUES (?, ?, ?, ?)"
+        if nfields == 3:
+            insert_query = \
+            "INSERT INTO Community(uuid, name, short_name) VALUES (?, ?, ?)"
+        elif nfields == 4:
+            insert_query = "INSERT INTO Community" + \
+            "(uuid, name, short_name, handle) VALUES (?, ?, ?, ?)"
+        else:
+            ms = f"Incorrect number of fields, {nfields}, in input file {filepath.name}"
+            raise ValueError(ms)
+    else:  #Collection
+        if nfields == 4:
+            insert_query = "INSERT INTO Collection" + \
+            "(uuid, comm_uuid, name, short_name) VALUES (?, ?, ?, ?)"
+        elif nfields == 5:
+            insert_query = "INSERT INTO Collection" + \
+            "(uuid, comm_uuid, name, short_name, handle) VALUES (?, ?, ?, ?, ?)"
+        else:
+            ms = f"Incorrect number of fields, {nfields}, in input file {filepath.name}"
+            raise ValueError(ms)
 
     #get all container uuids from db
     db_rows = cursor.execute("SELECT uuid FROM " + tablename).fetchall()
@@ -209,7 +224,7 @@ def ingest_dome_containers(conn, cursor, tablename, filepath,
                 cursor.execute(insert_query, irow)
                 nadded += 1
 
-    logging.debug(f"Count of added rows to {tablename}: {nadded}")
+    logging.info(f"Count of added rows to {tablename}: {nadded}")
 
     cursor.execute("INSERT INTO FilesProcessed(name, timestamp) VALUES " + \
         "(?, CURRENT_TIMESTAMP);", (filepath.name, ))
