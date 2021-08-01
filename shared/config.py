@@ -66,14 +66,29 @@ class Configuration:
     rpts_out_dirpath:           Path
 
 
+# To allow for debug lines to be written, the logger level must be at DEBUG
+# as well as the fileHandler level
 def log_init(logfilepath, filelog_level, consolelog_level, append):
-    logging.basicConfig(level=filelog_level,
-                        format='[%(asctime)s] %(levelname)s : %(message)s',
-                        filename=logfilepath,
-                        filemode= ('a' if append else 'w'))
-    console = logging.StreamHandler(stream=stdout)
-    console.setLevel(consolelog_level)
-    console.setFormatter(logging.Formatter('%(levelname)s : %(message)s'))
-    logging.getLogger('').addHandler(console)
+
+    logger = logging.getLogger('')
+    logger.setLevel(logging.DEBUG)    # this filters the handlers!!
+
+    if append:
+        mode = 'a'
+    else:
+        mode = 'w'
+
+    fh = logging.FileHandler(logfilepath, mode=mode)
+    fh.setLevel(filelog_level)
+    fh_formatter = logging.Formatter(' [%(asctime)s] %(levelname)s : %(message)s')
+    fh.setFormatter(fh_formatter)
+
+    ch = logging.StreamHandler()
+    ch.setLevel(consolelog_level)
+    ch_formatter = logging.Formatter('%(levelname)s : %(message)s')
+    ch.setFormatter(ch_formatter)
+
+    logger.addHandler(fh)
+    logger.addHandler(ch)
 
 #end of file
