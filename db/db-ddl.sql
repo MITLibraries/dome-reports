@@ -43,13 +43,13 @@ CREATE TABLE FilesProcessed (
     timestamp    TEXT
 );
 
-CREATE TABLE Email_Distribution {
+CREATE TABLE Email_Distribution (
     name         TEXT NOT NULL,
     email        TEXT NOT NULL,
     formats      TEXT,                -- any of: {achmx}, e.g. 'hx'
-    active       NUMERIC DEFAULT 1  CHECK( reportable IN (0,1)),
+    active       NUMERIC DEFAULT 1  CHECK( active IN (0,1)),
     notes        TEXT
-}; 
+); 
 
 CREATE INDEX idx_comm_uuid ON Collection(comm_uuid);
 CREATE INDEX idx_mic_uuid ON Monthly_Item_Count(coll_uuid);

@@ -28,7 +28,7 @@ Setup instructions summary for a working/production installation
   1.  Download the project from GitHub into a new directory, e.g. 'drp'
   2.  Install or confirm Python 3.7 or higher, preferred: 3.9
   3.  Create a Python virtual environment with the libraries listed in the requirements.txt file
-  4.  In the drp/db subdirectory, run the SQL init.ddl script to create a new database with empty tables, either using a standalone SQLite at the command line as in: 
+  4.  In the drp/db subdirectory, run the SQL initialization script 'db-ddl.sql' to create a new database with empty tables, either using a standalone SQLite at the command line as in: 
 ```
 (ve395) $> sqlite3 drp.db < db-ddl.sql
 ```
@@ -94,7 +94,7 @@ The model shell script for querying the Dome Postgres database is in the postgre
 
 The data files can be used for different DRP reports.
 
-For the current three Postgres queries, the resulting delimited csv data files have file names formatted as:  {name}-{YYMM}.csv, e.g. comm-2102.csv, coll-2102.csv, itc-2102.csv for community, collection and item-counts for February 2021.  The year and month in the file names are essential for processing the data for report generation and identifying which files are for which month.  The rows in the item-count files also have the year and month listed as fields.
+For the current three Postgres queries, the resulting delimited csv data files have file names formatted as:  {name}-{YYMM}.csv, e.g. comm-2102.csv, coll-2102.csv, itct-2102.csv for community, collection and item-counts for February 2021.  The year and month in the file names are essential for processing the data for report generation and identifying which files are for which month.  The rows in the item-count files also have the year and month listed as fields.
 
 
 #### Running reports
