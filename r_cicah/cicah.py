@@ -61,6 +61,7 @@ def main(argv):
         itct_filepath = get_itct_filepath()
         generate_reports(coll_rows, itct_filepath)
 
+        #move processed file
         itct_filepath.rename(cfg.data_done_dirpath / itct_filepath.name)
         logging.info(f"moved {itct_filepath.name} to completed directory") 
     except AssertionError as msg:
@@ -96,10 +97,10 @@ def get_coll_data():
             with closing(conn.cursor()) as cursor:
                 coll_rows = cursor.execute(queryColls,).fetchall()
     except sqlite3.Warning as w:
-        logging.warning(f"Ingest warning: {w}")  # FIXME
+        logging.warning(f"Ingest warning: {w}")
         drp.cleanup_and_exit(1)
     except sqlite3.Error as e:
-        logging.error(f"Ingest error: {e}")      # FIXME
+        logging.error(f"Ingest error: {e}")
         drp.cleanup_and_exit(1)
 
     #validate results
@@ -122,7 +123,9 @@ def get_itct_filepath():
         raise ValueError("Multiple files found matching filter in config.")
 
     logging.info(f"Processing input file: {fs[0].name}")
-    return fs[0]   # cfg.data_in_dirpath / "itct-2105.csv"
+
+    return fs[0]
+
 
 # Community and Collection data are assumed to be up-to-date in the local DRP db
 # The Item Count data is put into Pandas directly and is not stored in the DRP db
@@ -134,8 +137,16 @@ def generate_reports(coll_rows, itct_filepath):
     df_coll.columns = ["coll_uuid", "Community", "Collection"]
     logging.debug(f"Collections added to dataframe: {len(df_coll)}")
 
-    df_itct = pd.read_csv(itct_filepath, sep='\t',
-                  names=('coll_uuid', 'Year', 'Month', 'Item_Count'))
+
+    df_itct = pd.read_csv(itct_filepath, header=None, sep=cfg.data_in_field_sep)
+
+    assert (len(df_itct.columns) == 4), \
+        f"{itct_filepath.name} has wrong number of columns"
+
+    assert (len(df_itct) > 1), f"{itct_filepath.name} has no rows"
+
+    df_itct.columns = ['coll_uuid', 'Year', 'Month', 'Item_Count']
+
     logging.debug(f"Item counts added to dataframe: {len(df_itct)}")
 
     df_itct.drop(columns=['Year', 'Month'], inplace=True)
