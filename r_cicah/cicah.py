@@ -22,12 +22,11 @@ import pandas as pd
 import config    #local
 
 
-# the main function below instantiates the config
-cfg = None
-
+#  instantiates the config from config.py and updates it from
+#  any commandline args
+#  calls the run(), the top processing function
 def main(argv):
 
-    global cfg
     cfg = config.get_config()
 
     # init logging
@@ -54,12 +53,21 @@ def main(argv):
         print(config.get_help_text())
         drp.cleanup_and_exit(1)
 
+    run(cfg)
+
+
+#  the primary processing function
+#  can be run from an external source with a valid config, for testing
+def run(cfg):
+
     logging.info(f"Using database file {cfg.db_filepath}")
 
     try:
-        coll_rows = get_coll_data()
-        itct_filepath = get_itct_filepath()
-        generate_reports(coll_rows, itct_filepath)
+        coll_rows = get_coll_data(cfg.db_filepath)
+        itct_filepath = get_itct_filepath(cfg.data_in_filename_filters[0],
+                                          cfg.data_in_dirpath)
+        generate_reports(coll_rows, itct_filepath, cfg.data_in_field_sep,
+                         cfg.rpt_formats, cfg.rpts_out_dirpath, cfg.rpt_basename)
 
         #move processed file
         itct_filepath.rename(cfg.data_done_dirpath / itct_filepath.name)
@@ -82,7 +90,7 @@ def main(argv):
 
 # Get current data from the DRP local db for creating the CICMTS report
 # Returns list of column rows and list of monthly item counts rows
-def get_coll_data():
+def get_coll_data(db_filepath):
 
     queryColls = ("SELECT coll.uuid as coll_uuid, "
           "comm.short_name  as Community, "
@@ -92,7 +100,7 @@ def get_coll_data():
           "WHERE coll.reportable = 1;")
 
     try:
-        with closing(sqlite3.connect(cfg.db_filepath)) as conn:
+        with closing(sqlite3.connect(db_filepath)) as conn:
             conn.execute("PRAGMA foreign_keys = 1")
             with closing(conn.cursor()) as cursor:
                 coll_rows = cursor.execute(queryColls,).fetchall()
@@ -110,10 +118,10 @@ def get_coll_data():
     return coll_rows
 
 
-def get_itct_filepath():
+def get_itct_filepath(f_filter, f_dirpath):
 
-    logging.debug(f"input file filter: {cfg.data_in_filename_filters[0]}")
-    fs = list(cfg.data_in_dirpath.glob(cfg.data_in_filename_filters[0]))
+    logging.debug(f"input file filter: {f_filter}")
+    fs = list(f_dirpath.glob(f_filter))
     logging.debug(f"input files found: {fs}")
 
     if fs is None or len(fs) == 0:
@@ -122,23 +130,22 @@ def get_itct_filepath():
     if len(fs) > 1:
         raise ValueError("Multiple files found matching filter in config.")
 
-    logging.info(f"Processing input file: {fs[0].name}")
-
     return fs[0]
 
 
 # Community and Collection data are assumed to be up-to-date in the local DRP db
 # The Item Count data is put into Pandas directly and is not stored in the DRP db
-def generate_reports(coll_rows, itct_filepath):
+def generate_reports(coll_rows, itct_filepath, field_sep, fmts, 
+                     rpts_dirpath, rpt_basename):
 
-    logging.debug("generating reports")
+    logging.debug(f"Generating reports for {itct_filepath.name}")
 
     df_coll = pd.DataFrame(coll_rows)
     df_coll.columns = ["coll_uuid", "Community", "Collection"]
     logging.debug(f"Collections added to dataframe: {len(df_coll)}")
 
 
-    df_itct = pd.read_csv(itct_filepath, header=None, sep=cfg.data_in_field_sep)
+    df_itct = pd.read_csv(itct_filepath, header=None, sep=field_sep)
 
     assert (len(df_itct.columns) == 4), \
         f"{itct_filepath.name} has wrong number of columns"
@@ -167,12 +174,13 @@ def generate_reports(coll_rows, itct_filepath):
     df = df.append(sums)
 
     now = datetime.now()
-    stem = f"{cfg.rpt_basename}-{now.strftime('%Y%m%d')}"
+    stem = f"{rpt_basename}-{now.strftime('%Y%m%d')}"
     logging.debug(f"stem: {stem}")
 
-    drp.write_rpts(df, cfg.rpt_formats, cfg.rpts_out_dirpath, stem, now.year)
+    drp.write_rpts(df, fmts, rpts_dirpath, stem, now.year)
 
     logging.info("Report creation complete.")
 
 
-main((argv[1:]))
+if __name__ == "__main__":
+    main((argv[1:]))

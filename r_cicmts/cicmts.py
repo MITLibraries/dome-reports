@@ -23,12 +23,10 @@ import pandas as pd
 
 import config    #local
 
-# the main function below instantiates the config
-cfg = None
-
+# instantiates the config and updates per the commandline options
+# calls run(), the top level processing function
 def main(argv):
 
-    global cfg
     cfg = config.get_config()
 
     # init logging
@@ -56,6 +54,10 @@ def main(argv):
         print(config.get_help_text())
         drp.cleanup_and_exit(1)
 
+    run(cfg)
+
+def run(cfg):
+
     logging.info(f"Using database file {cfg.db_filepath}")
 
     # ingest and reporting
@@ -66,7 +68,9 @@ def main(argv):
                 if cfg.skip_ingest:
                     logging.info("Skipping data ingest")
                 else:
-                    run_ingest(conn, cursor)
+                    run_ingest(conn, cursor, 
+                        cfg.data_in_filename_filters, cfg.data_in_field_sep,
+                        cfg.data_in_dirpath, cfg.data_done_dirpath)
 
                 if cfg.skip_output:
                     logging.info("Skipping report generation")
@@ -102,29 +106,27 @@ def main(argv):
 
 # ingest any combination of comm, coll, or itct files
 # can raise AssertionError or ValueError
-def run_ingest(conn, cursor):
+def run_ingest(conn, cursor, f_filters, field_sep, data_in_dirpath, done_dirpath):
 
     logging.info("starting data ingest")
-    logging.info(f"ingest file dir: {cfg.data_in_dirpath}")
+    logging.info(f"ingest file dir: {data_in_dirpath}")
 
     # validate and return the comm, coll, and itct filepaths in that order
     #infiles = get_ingest_filepaths(cfg.ingest_dicfgth, file_filters)
     comm_file, coll_file, itct_file  = \
-                  get_ingest_filepaths(cfg.data_in_dirpath,
-                  cfg.data_in_filename_filters)
+                  get_ingest_filepaths(data_in_dirpath, f_filters)
 
     # load data from files into db
     if comm_file is not None:
         ingest_dome_containers(conn, cursor, "Community", comm_file,
-                           cfg.data_in_field_sep, cfg.data_done_dirpath)
+                           field_sep, done_dirpath)
 
     if coll_file is not None:
         ingest_dome_containers(conn, cursor, "Collection", coll_file,
-                           cfg.data_in_field_sep, cfg.data_done_dirpath)
+                           field_sep, done_dirpath)
 
     if itct_file is not None:
-         ingest_item_counts(conn, cursor, itct_file,
-                      cfg.data_in_field_sep, cfg.data_done_dirpath)
+         ingest_item_counts(conn, cursor, itct_file, field_sep, done_dirpath)
 
     logging.info("Ingest complete")
 
@@ -162,7 +164,7 @@ def get_ingest_filepaths(dirpath, filters):
     return tuple(flattened)
 
 # insert data into the community or collection tables
-def ingest_dome_containers(conn, cursor, tablename, filepath, 
+def ingest_dome_containers(conn, cursor, tablename, filepath,
                            sep, done_dirpath):
     logging.info(f"ingesting file: {filepath.name}")
     assert not drp.datafile_processed(cursor, filepath), \
@@ -342,4 +344,5 @@ def generate_report_files(itct_rows, rpts_dirpath,
     drp.write_rpts(df, rpt_fmts, rpts_dirpath, stem, year)
 
 
-main((argv[1:]))
+if __name__ == "__main__":
+    main((argv[1:]))
