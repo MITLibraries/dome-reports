@@ -1,0 +1,659 @@
+ [2021-08-06 12:44:02,753] INFO : DRP module CICMTS, version 0.2.3
+ [2021-08-06 12:44:02,753] ERROR : Specified database file /Users/carlj/Developer/Dome/DomeReports-2021/dome-reports/db/drp.db does not exist.
+ [2021-08-06 12:45:40,354] INFO : DRP module CICMTS, version 0.2.3
+ [2021-08-06 12:45:40,355] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021/dome-reports/db/drp-prod.db
+ [2021-08-06 12:45:40,355] INFO : starting data ingest
+ [2021-08-06 12:45:40,355] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021/dome-reports/r_cicmts/data_in
+ [2021-08-06 12:45:40,356] ERROR : Error validating data ingest files: No files to process in data_in 
+ [2021-08-06 12:46:27,922] INFO : DRP module CICMTS, version 0.2.3
+ [2021-08-06 12:46:27,922] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021/dome-reports/db/drp-prod.db
+ [2021-08-06 12:46:27,923] INFO : Skipping data ingest
+ [2021-08-06 12:46:27,923] INFO : Starting report generation
+ [2021-08-06 12:46:27,938] INFO : created: dome-cicmts-202108.txt
+ [2021-08-06 12:46:27,943] INFO : created: dome-cicmts-202108.html
+ [2021-08-06 12:46:27,986] INFO : created report: dome-cicmts-202108.xlsx
+ [2021-08-06 12:46:28,035] INFO : End of DRP CICMTS run
+ [2021-09-24 22:20:44,392] INFO : DRP module CICMTS, version 0.2.3
+ [2021-09-24 22:20:44,395] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2021-09-24 22:20:44,395] INFO : starting data ingest
+ [2021-09-24 22:20:44,396] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2021-09-24 22:20:44,398] ERROR : Error validating data ingest files: No files to process in data_in 
+ [2021-09-26 22:19:30,043] INFO : DRP module CICMTS, version 0.2.3
+ [2021-09-26 22:19:30,044] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2021-09-26 22:19:30,046] INFO : starting data ingest
+ [2021-09-26 22:19:30,046] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2021-09-26 22:19:30,048] INFO : ingesting file: comm-2109.csv
+ [2021-09-26 22:19:30,057] INFO : Count of added rows to Community: 0
+ [2021-09-26 22:19:30,058] INFO : Processed comm-2109.csv with 0 new rows added
+ [2021-09-26 22:19:30,059] INFO : moved comm-2109.csv to completed directory
+ [2021-09-26 22:19:30,059] INFO : ingesting file: coll-2109.csv
+ [2021-09-26 22:19:30,068] INFO : Count of added rows to Collection: 23
+ [2021-09-26 22:19:30,069] INFO : Processed coll-2109.csv with 23 new rows added
+ [2021-09-26 22:19:30,070] INFO : moved coll-2109.csv to completed directory
+ [2021-09-26 22:19:30,070] INFO : ingesting file: itct-2109.csv
+ [2021-09-26 22:19:30,080] INFO : moved itct-2109.csv to completed directory
+ [2021-09-26 22:19:30,080] INFO : Ingest complete
+ [2021-09-26 22:19:30,080] INFO : Starting report generation
+ [2021-09-26 22:19:30,111] INFO : created: dome-cicmts-202109.txt
+ [2021-09-26 22:19:30,126] INFO : created: dome-cicmts-202109.html
+ [2021-09-26 22:19:30,174] INFO : created report: dome-cicmts-202109.xlsx
+ [2021-09-26 22:19:30,226] INFO : End of DRP CICMTS run
+ [2021-09-27 18:39:16,309] INFO : DRP module CICMTS, version 0.2.3
+ [2021-09-27 18:39:16,309] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2021-09-27 18:39:16,310] INFO : starting data ingest
+ [2021-09-27 18:39:16,310] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2021-09-27 18:39:16,311] INFO : ingesting file: comm-2109.csv
+ [2021-09-27 18:39:16,333] INFO : Count of added rows to Community: 0
+ [2021-09-27 18:39:16,335] INFO : Processed comm-2109.csv with 0 new rows added
+ [2021-09-27 18:39:16,335] INFO : moved comm-2109.csv to completed directory
+ [2021-09-27 18:39:16,335] INFO : ingesting file: coll-2109.csv
+ [2021-09-27 18:39:16,339] INFO : Count of added rows to Collection: 20
+ [2021-09-27 18:39:16,340] INFO : Processed coll-2109.csv with 20 new rows added
+ [2021-09-27 18:39:16,340] INFO : moved coll-2109.csv to completed directory
+ [2021-09-27 18:39:16,340] INFO : ingesting file: itct-2109.csv
+ [2021-09-27 18:39:16,346] INFO : moved itct-2109.csv to completed directory
+ [2021-09-27 18:39:16,346] INFO : Ingest complete
+ [2021-09-27 18:39:16,346] INFO : Starting report generation
+ [2021-09-27 18:39:16,383] INFO : created: dome-cicmts-202109.txt
+ [2021-09-27 18:39:16,400] INFO : created: dome-cicmts-202109.html
+ [2021-09-27 18:39:16,455] INFO : created report: dome-cicmts-202109.xlsx
+ [2021-09-27 18:39:16,517] INFO : End of DRP CICMTS run
+ [2021-10-27 01:30:15,850] INFO : DRP module CICMTS, version 0.2.3
+ [2021-10-27 01:30:15,852] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2021-10-27 01:30:15,858] INFO : starting data ingest
+ [2021-10-27 01:30:15,858] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2021-10-27 01:30:15,859] INFO : ingesting file: comm-2110.csv
+ [2021-10-27 01:30:15,862] INFO : Count of added rows to Community: 1
+ [2021-10-27 01:30:15,862] INFO : Processed comm-2110.csv with 1 new rows added
+ [2021-10-27 01:30:15,863] INFO : moved comm-2110.csv to completed directory
+ [2021-10-27 01:30:15,863] INFO : ingesting file: coll-2110.csv
+ [2021-10-27 01:30:15,865] INFO : Count of added rows to Collection: 11
+ [2021-10-27 01:30:15,867] INFO : Processed coll-2110.csv with 11 new rows added
+ [2021-10-27 01:30:15,867] INFO : moved coll-2110.csv to completed directory
+ [2021-10-27 01:30:15,867] INFO : ingesting file: itct-2110.csv
+ [2021-10-27 01:30:15,874] INFO : moved itct-2110.csv to completed directory
+ [2021-10-27 01:30:15,874] INFO : Ingest complete
+ [2021-10-27 01:30:15,874] INFO : Starting report generation
+ [2021-10-27 01:30:15,909] INFO : created: dome-cicmts-202110.txt
+ [2021-10-27 01:30:15,926] INFO : created: dome-cicmts-202110.html
+ [2021-10-27 01:30:15,978] INFO : created report: dome-cicmts-202110.xlsx
+ [2021-10-27 01:30:16,039] INFO : End of DRP CICMTS run
+ [2021-11-29 15:54:44,845] INFO : DRP module CICMTS, version 0.2.3
+ [2021-11-29 15:54:44,847] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2021-11-29 15:54:44,852] INFO : starting data ingest
+ [2021-11-29 15:54:44,853] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2021-11-29 15:54:44,854] INFO : ingesting file: comm-2111.csv
+ [2021-11-29 15:54:44,858] INFO : Count of added rows to Community: 0
+ [2021-11-29 15:54:44,860] INFO : Processed comm-2111.csv with 0 new rows added
+ [2021-11-29 15:54:44,860] INFO : moved comm-2111.csv to completed directory
+ [2021-11-29 15:54:44,860] INFO : ingesting file: coll-2111.csv
+ [2021-11-29 15:54:44,868] INFO : Count of added rows to Collection: 0
+ [2021-11-29 15:54:44,869] INFO : Processed coll-2111.csv with 0 new rows added
+ [2021-11-29 15:54:44,869] INFO : moved coll-2111.csv to completed directory
+ [2021-11-29 15:54:44,869] INFO : ingesting file: itct-2111.csv
+ [2021-11-29 15:54:44,881] INFO : moved itct-2111.csv to completed directory
+ [2021-11-29 15:54:44,882] INFO : Ingest complete
+ [2021-11-29 15:54:44,882] INFO : Starting report generation
+ [2021-11-29 15:54:44,916] INFO : created: dome-cicmts-202111.txt
+ [2021-11-29 15:54:44,935] INFO : created: dome-cicmts-202111.html
+ [2021-11-29 15:54:44,986] INFO : created report: dome-cicmts-202111.xlsx
+ [2021-11-29 15:54:45,046] INFO : End of DRP CICMTS run
+ [2022-01-03 16:27:26,766] INFO : DRP module CICMTS, version 0.2.3
+ [2022-01-03 16:27:26,766] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2022-01-03 16:27:26,767] INFO : starting data ingest
+ [2022-01-03 16:27:26,767] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2022-01-03 16:27:26,768] INFO : ingesting file: comm-2112.csv
+ [2022-01-03 16:27:26,770] INFO : Count of added rows to Community: 0
+ [2022-01-03 16:27:26,772] INFO : Processed comm-2112.csv with 0 new rows added
+ [2022-01-03 16:27:26,772] INFO : moved comm-2112.csv to completed directory
+ [2022-01-03 16:27:26,772] INFO : ingesting file: coll-2112.csv
+ [2022-01-03 16:27:26,780] INFO : Count of added rows to Collection: 2
+ [2022-01-03 16:27:26,781] INFO : Processed coll-2112.csv with 2 new rows added
+ [2022-01-03 16:27:26,781] INFO : moved coll-2112.csv to completed directory
+ [2022-01-03 16:27:26,781] INFO : ingesting file: itct-2112.csv
+ [2022-01-03 16:27:26,790] INFO : moved itct-2112.csv to completed directory
+ [2022-01-03 16:27:26,790] INFO : Ingest complete
+ [2022-01-03 16:27:26,790] INFO : Starting report generation
+ [2022-01-03 16:27:26,791] ERROR : Error validating data ingest files: No data in for year 2022 
+ [2022-01-03 20:44:52,518] INFO : DRP module CICMTS, version 0.2.3
+ [2022-01-03 20:45:01,661] INFO : DRP module CICMTS, version 0.2.3
+ [2022-01-03 20:45:01,664] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2022-01-03 20:45:01,665] INFO : starting data ingest
+ [2022-01-03 20:45:01,665] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2022-01-03 20:45:01,666] ERROR : Error validating data ingest files: No files to process in data_in 
+ [2022-01-03 21:14:06,585] INFO : DRP module CICMTS, version 0.2.3
+ [2022-01-03 21:14:06,587] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2022-01-03 21:14:06,588] INFO : starting data ingest
+ [2022-01-03 21:14:06,588] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2022-01-03 21:14:06,589] INFO : ingesting file: comm-2112.csv
+ [2022-01-03 21:14:06,592] INFO : Count of added rows to Community: 0
+ [2022-01-03 21:14:06,594] INFO : Processed comm-2112.csv with 0 new rows added
+ [2022-01-03 21:14:06,594] INFO : moved comm-2112.csv to completed directory
+ [2022-01-03 21:14:06,594] INFO : ingesting file: coll-2112.csv
+ [2022-01-03 21:14:06,597] INFO : Count of added rows to Collection: 2
+ [2022-01-03 21:14:06,598] INFO : Processed coll-2112.csv with 2 new rows added
+ [2022-01-03 21:14:06,598] INFO : moved coll-2112.csv to completed directory
+ [2022-01-03 21:14:06,598] INFO : ingesting file: itct-2112.csv
+ [2022-01-03 21:14:06,611] INFO : moved itct-2112.csv to completed directory
+ [2022-01-03 21:14:06,611] INFO : Ingest complete
+ [2022-01-03 21:14:06,611] INFO : Starting report generation
+ [2022-01-03 21:14:06,649] INFO : created: dome-cicmts-2021.txt
+ [2022-01-03 21:14:06,669] INFO : created: dome-cicmts-2021.html
+ [2022-01-03 21:14:06,731] INFO : created report: dome-cicmts-2021.xlsx
+ [2022-01-03 21:14:06,814] INFO : End of DRP CICMTS run
+ [2022-01-04 02:18:25,321] INFO : DRP module CICMTS, version 0.2.3
+ [2022-01-29 17:13:51,909] INFO : DRP module CICMTS, version 0.2.3
+ [2022-01-29 17:13:51,910] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2022-01-29 17:13:51,917] INFO : starting data ingest
+ [2022-01-29 17:13:51,917] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2022-01-29 17:13:51,919] INFO : ingesting file: comm-2201.csv
+ [2022-01-29 17:13:51,920] INFO : Count of added rows to Community: 0
+ [2022-01-29 17:13:51,922] INFO : Processed comm-2201.csv with 0 new rows added
+ [2022-01-29 17:13:51,922] INFO : moved comm-2201.csv to completed directory
+ [2022-01-29 17:13:51,922] INFO : ingesting file: coll-2201.csv
+ [2022-01-29 17:13:51,926] INFO : Count of added rows to Collection: 2
+ [2022-01-29 17:13:51,927] INFO : Processed coll-2201.csv with 2 new rows added
+ [2022-01-29 17:13:51,927] INFO : moved coll-2201.csv to completed directory
+ [2022-01-29 17:13:51,927] INFO : ingesting file: itct-2201.csv
+ [2022-01-29 17:13:51,936] INFO : moved itct-2201.csv to completed directory
+ [2022-01-29 17:13:51,936] INFO : Ingest complete
+ [2022-01-29 17:13:51,936] INFO : Starting report generation
+ [2022-01-29 17:13:51,963] INFO : created: dome-cicmts-202201.txt
+ [2022-01-29 17:13:51,975] INFO : created: dome-cicmts-202201.html
+ [2022-01-29 17:13:52,015] INFO : created report: dome-cicmts-202201.xlsx
+ [2022-01-29 17:13:52,058] INFO : End of DRP CICMTS run
+ [2022-02-27 19:10:18,317] INFO : DRP module CICMTS, version 0.2.3
+ [2022-02-27 19:10:18,320] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2022-02-27 19:10:18,327] INFO : starting data ingest
+ [2022-02-27 19:10:18,327] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2022-02-27 19:10:18,328] INFO : ingesting file: comm-2202.csv
+ [2022-02-27 19:10:18,337] INFO : Count of added rows to Community: 0
+ [2022-02-27 19:10:18,338] INFO : Processed comm-2202.csv with 0 new rows added
+ [2022-02-27 19:10:18,339] INFO : moved comm-2202.csv to completed directory
+ [2022-02-27 19:10:18,339] INFO : ingesting file: coll-2202.csv
+ [2022-02-27 19:10:18,350] INFO : Count of added rows to Collection: 4
+ [2022-02-27 19:10:18,351] INFO : Processed coll-2202.csv with 4 new rows added
+ [2022-02-27 19:10:18,351] INFO : moved coll-2202.csv to completed directory
+ [2022-02-27 19:10:18,351] INFO : ingesting file: itct-2202.csv
+ [2022-02-27 19:10:18,363] INFO : moved itct-2202.csv to completed directory
+ [2022-02-27 19:10:18,363] INFO : Ingest complete
+ [2022-02-27 19:10:18,363] INFO : Starting report generation
+ [2022-02-27 19:10:18,393] INFO : created: dome-cicmts-202202.txt
+ [2022-02-27 19:10:18,409] INFO : created: dome-cicmts-202202.html
+ [2022-02-27 19:10:18,459] INFO : created report: dome-cicmts-202202.xlsx
+ [2022-02-27 19:10:18,511] INFO : End of DRP CICMTS run
+ [2022-03-28 17:51:22,610] INFO : DRP module CICMTS, version 0.2.3
+ [2022-03-28 17:51:22,612] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2022-03-28 17:51:22,618] INFO : starting data ingest
+ [2022-03-28 17:51:22,618] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2022-03-28 17:51:22,619] INFO : ingesting file: comm-2203.csv
+ [2022-03-28 17:51:22,621] INFO : Count of added rows to Community: 0
+ [2022-03-28 17:51:22,622] INFO : Processed comm-2203.csv with 0 new rows added
+ [2022-03-28 17:51:22,622] INFO : moved comm-2203.csv to completed directory
+ [2022-03-28 17:51:22,623] INFO : ingesting file: coll-2203.csv
+ [2022-03-28 17:51:22,633] INFO : Count of added rows to Collection: 1
+ [2022-03-28 17:51:22,638] INFO : Processed coll-2203.csv with 1 new rows added
+ [2022-03-28 17:51:22,639] INFO : moved coll-2203.csv to completed directory
+ [2022-03-28 17:51:22,639] INFO : ingesting file: itct-2203.csv
+ [2022-03-28 17:51:22,653] INFO : moved itct-2203.csv to completed directory
+ [2022-03-28 17:51:22,653] INFO : Ingest complete
+ [2022-03-28 17:51:22,653] INFO : Starting report generation
+ [2022-03-28 17:51:22,683] INFO : created: dome-cicmts-202203.txt
+ [2022-03-28 17:51:22,698] INFO : created: dome-cicmts-202203.html
+ [2022-03-28 17:51:22,751] INFO : created report: dome-cicmts-202203.xlsx
+ [2022-03-28 17:51:22,809] INFO : End of DRP CICMTS run
+ [2022-04-26 02:24:13,928] INFO : DRP module CICMTS, version 0.2.3
+ [2022-04-26 02:24:13,928] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/db/drp-prod.db
+ [2022-04-26 02:24:13,929] INFO : starting data ingest
+ [2022-04-26 02:24:13,929] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2021-new/dome-reports/r_cicmts/data_in
+ [2022-04-26 02:24:13,930] INFO : ingesting file: comm-2204.csv
+ [2022-04-26 02:24:13,931] INFO : Count of added rows to Community: 0
+ [2022-04-26 02:24:13,932] INFO : Processed comm-2204.csv with 0 new rows added
+ [2022-04-26 02:24:13,933] INFO : moved comm-2204.csv to completed directory
+ [2022-04-26 02:24:13,933] INFO : ingesting file: coll-2204.csv
+ [2022-04-26 02:24:13,934] INFO : Count of added rows to Collection: 0
+ [2022-04-26 02:24:13,935] INFO : Processed coll-2204.csv with 0 new rows added
+ [2022-04-26 02:24:13,935] INFO : moved coll-2204.csv to completed directory
+ [2022-04-26 02:24:13,935] INFO : ingesting file: itct-2204.csv
+ [2022-04-26 02:24:13,938] INFO : moved itct-2204.csv to completed directory
+ [2022-04-26 02:24:13,938] INFO : Ingest complete
+ [2022-04-26 02:24:13,938] INFO : Starting report generation
+ [2022-04-26 02:24:13,991] INFO : created: dome-cicmts-202204.txt
+ [2022-04-26 02:24:13,997] INFO : created: dome-cicmts-202204.html
+ [2022-04-26 02:24:14,025] INFO : created report: dome-cicmts-202204.xlsx
+ [2022-04-26 02:24:14,057] INFO : End of DRP CICMTS run
+ [2022-05-25 22:41:16,532] INFO : DRP module CICMTS, version 0.2.3
+ [2022-05-25 22:41:16,533] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/db/drp-prod.db
+ [2022-05-25 22:41:16,537] INFO : starting data ingest
+ [2022-05-25 22:41:16,537] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/r_cicmts/data_in
+ [2022-05-25 22:41:16,540] INFO : ingesting file: comm-2205.csv
+ [2022-05-25 22:41:16,552] INFO : Count of added rows to Community: 0
+ [2022-05-25 22:41:16,558] INFO : Processed comm-2205.csv with 0 new rows added
+ [2022-05-25 22:41:16,559] INFO : moved comm-2205.csv to completed directory
+ [2022-05-25 22:41:16,559] INFO : ingesting file: coll-2205.csv
+ [2022-05-25 22:41:16,572] INFO : Count of added rows to Collection: 0
+ [2022-05-25 22:41:16,575] INFO : Processed coll-2205.csv with 0 new rows added
+ [2022-05-25 22:41:16,576] INFO : moved coll-2205.csv to completed directory
+ [2022-05-25 22:41:16,576] INFO : ingesting file: itct-2205.csv
+ [2022-05-25 22:41:16,592] INFO : moved itct-2205.csv to completed directory
+ [2022-05-25 22:41:16,592] INFO : Ingest complete
+ [2022-05-25 22:41:16,592] INFO : Starting report generation
+ [2022-05-25 22:41:16,661] INFO : created: dome-cicmts-202205.txt
+ [2022-05-25 22:41:16,668] INFO : created: dome-cicmts-202205.html
+ [2022-05-25 22:41:16,704] INFO : created report: dome-cicmts-202205.xlsx
+ [2022-05-25 22:41:16,767] INFO : End of DRP CICMTS run
+ [2022-06-30 12:57:36,454] INFO : DRP module CICMTS, version 0.2.3
+ [2022-06-30 12:57:36,455] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/db/drp-prod.db
+ [2022-06-30 12:57:36,464] INFO : starting data ingest
+ [2022-06-30 12:57:36,464] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/r_cicmts/data_in
+ [2022-06-30 12:57:36,466] INFO : ingesting file: comm-2206.csv
+ [2022-06-30 12:57:36,481] INFO : Count of added rows to Community: 0
+ [2022-06-30 12:57:36,485] INFO : Processed comm-2206.csv with 0 new rows added
+ [2022-06-30 12:57:36,485] INFO : moved comm-2206.csv to completed directory
+ [2022-06-30 12:57:36,485] INFO : ingesting file: coll-2206.csv
+ [2022-06-30 12:57:36,494] INFO : Count of added rows to Collection: 0
+ [2022-06-30 12:57:36,495] INFO : Processed coll-2206.csv with 0 new rows added
+ [2022-06-30 12:57:36,496] INFO : moved coll-2206.csv to completed directory
+ [2022-06-30 12:57:36,496] INFO : ingesting file: itct-2206.csv
+ [2022-06-30 12:57:36,508] INFO : moved itct-2206.csv to completed directory
+ [2022-06-30 12:57:36,508] INFO : Ingest complete
+ [2022-06-30 12:57:36,508] INFO : Starting report generation
+ [2022-06-30 12:57:36,566] INFO : created: dome-cicmts-202206.txt
+ [2022-06-30 12:57:36,575] INFO : created: dome-cicmts-202206.html
+ [2022-06-30 12:57:36,610] INFO : created report: dome-cicmts-202206.xlsx
+ [2022-06-30 12:57:36,693] INFO : End of DRP CICMTS run
+ [2022-07-27 18:49:16,877] INFO : DRP module CICMTS, version 0.2.3
+ [2022-07-27 18:49:16,879] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/db/drp-prod.db
+ [2022-07-27 18:49:16,889] INFO : starting data ingest
+ [2022-07-27 18:49:16,890] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/r_cicmts/data_in
+ [2022-07-27 18:49:16,892] INFO : ingesting file: comm-2207.csv
+ [2022-07-27 18:49:16,905] INFO : Count of added rows to Community: 0
+ [2022-07-27 18:49:16,913] INFO : Processed comm-2207.csv with 0 new rows added
+ [2022-07-27 18:49:16,914] INFO : moved comm-2207.csv to completed directory
+ [2022-07-27 18:49:16,914] INFO : ingesting file: coll-2207.csv
+ [2022-07-27 18:49:16,951] INFO : Count of added rows to Collection: 1
+ [2022-07-27 18:49:16,954] INFO : Processed coll-2207.csv with 1 new rows added
+ [2022-07-27 18:49:16,954] INFO : moved coll-2207.csv to completed directory
+ [2022-07-27 18:49:16,955] INFO : ingesting file: itct-2207.csv
+ [2022-07-27 18:49:16,968] INFO : moved itct-2207.csv to completed directory
+ [2022-07-27 18:49:16,968] INFO : Ingest complete
+ [2022-07-27 18:49:16,968] INFO : Starting report generation
+ [2022-07-27 18:49:17,037] INFO : created: dome-cicmts-202207.txt
+ [2022-07-27 18:49:17,043] INFO : created: dome-cicmts-202207.html
+ [2022-07-27 18:49:17,074] INFO : created report: dome-cicmts-202207.xlsx
+ [2022-07-27 18:49:17,129] INFO : End of DRP CICMTS run
+ [2022-08-30 15:05:39,208] INFO : DRP module CICMTS, version 0.2.3
+ [2022-08-30 15:05:39,209] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/db/drp-prod.db
+ [2022-08-30 15:05:39,214] INFO : starting data ingest
+ [2022-08-30 15:05:39,215] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/r_cicmts/data_in
+ [2022-08-30 15:05:39,217] INFO : ingesting file: comm-2208.csv
+ [2022-08-30 15:05:39,236] INFO : Count of added rows to Community: 0
+ [2022-08-30 15:05:39,249] INFO : Processed comm-2208.csv with 0 new rows added
+ [2022-08-30 15:05:39,249] INFO : moved comm-2208.csv to completed directory
+ [2022-08-30 15:05:39,249] INFO : ingesting file: coll-2208.csv
+ [2022-08-30 15:05:39,262] INFO : Count of added rows to Collection: 2
+ [2022-08-30 15:05:39,264] INFO : Processed coll-2208.csv with 2 new rows added
+ [2022-08-30 15:05:39,264] INFO : moved coll-2208.csv to completed directory
+ [2022-08-30 15:05:39,264] INFO : ingesting file: itct-2208.csv
+ [2022-08-30 15:05:39,276] INFO : moved itct-2208.csv to completed directory
+ [2022-08-30 15:05:39,276] INFO : Ingest complete
+ [2022-08-30 15:05:39,276] INFO : Starting report generation
+ [2022-08-30 15:05:39,346] INFO : created: dome-cicmts-202208.txt
+ [2022-08-30 15:05:39,356] INFO : created: dome-cicmts-202208.html
+ [2022-08-30 15:05:39,389] INFO : created report: dome-cicmts-202208.xlsx
+ [2022-08-30 15:05:39,446] INFO : End of DRP CICMTS run
+ [2022-09-28 01:40:11,310] INFO : DRP module CICMTS, version 0.2.3
+ [2022-09-28 01:40:11,312] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/db/drp-prod.db
+ [2022-09-28 01:40:11,321] INFO : starting data ingest
+ [2022-09-28 01:40:11,321] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/r_cicmts/data_in
+ [2022-09-28 01:40:11,323] INFO : ingesting file: comm-2209.csv
+ [2022-09-28 01:40:11,330] INFO : Count of added rows to Community: 0
+ [2022-09-28 01:40:11,334] INFO : Processed comm-2209.csv with 0 new rows added
+ [2022-09-28 01:40:11,335] INFO : moved comm-2209.csv to completed directory
+ [2022-09-28 01:40:11,335] INFO : ingesting file: coll-2209.csv
+ [2022-09-28 01:40:11,346] INFO : Count of added rows to Collection: 0
+ [2022-09-28 01:40:11,349] INFO : Processed coll-2209.csv with 0 new rows added
+ [2022-09-28 01:40:11,350] INFO : moved coll-2209.csv to completed directory
+ [2022-09-28 01:40:11,350] INFO : ingesting file: itct-2209.csv
+ [2022-09-28 01:40:11,362] INFO : moved itct-2209.csv to completed directory
+ [2022-09-28 01:40:11,362] INFO : Ingest complete
+ [2022-09-28 01:40:11,362] INFO : Starting report generation
+ [2022-09-28 01:40:11,423] INFO : created: dome-cicmts-202209.txt
+ [2022-09-28 01:40:11,429] INFO : created: dome-cicmts-202209.html
+ [2022-09-28 01:40:11,455] INFO : created report: dome-cicmts-202209.xlsx
+ [2022-09-28 01:40:11,498] INFO : End of DRP CICMTS run
+ [2022-10-26 16:11:42,474] INFO : DRP module CICMTS, version 0.2.3
+ [2022-10-26 16:11:42,475] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/db/drp-prod.db
+ [2022-10-26 16:11:42,484] INFO : starting data ingest
+ [2022-10-26 16:11:42,484] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/r_cicmts/data_in
+ [2022-10-26 16:11:42,487] INFO : ingesting file: comm-2210.csv
+ [2022-10-26 16:11:42,499] INFO : Count of added rows to Community: 0
+ [2022-10-26 16:11:42,503] INFO : Processed comm-2210.csv with 0 new rows added
+ [2022-10-26 16:11:42,504] INFO : moved comm-2210.csv to completed directory
+ [2022-10-26 16:11:42,504] INFO : ingesting file: coll-2210.csv
+ [2022-10-26 16:11:42,511] INFO : Count of added rows to Collection: 0
+ [2022-10-26 16:11:42,514] INFO : Processed coll-2210.csv with 0 new rows added
+ [2022-10-26 16:11:42,514] INFO : moved coll-2210.csv to completed directory
+ [2022-10-26 16:11:42,514] INFO : ingesting file: itct-2210.csv
+ [2022-10-26 16:11:42,526] INFO : moved itct-2210.csv to completed directory
+ [2022-10-26 16:11:42,526] INFO : Ingest complete
+ [2022-10-26 16:11:42,526] INFO : Starting report generation
+ [2022-10-26 16:11:42,588] INFO : created: dome-cicmts-202210.txt
+ [2022-10-26 16:11:42,597] INFO : created: dome-cicmts-202210.html
+ [2022-10-26 16:11:42,629] INFO : created report: dome-cicmts-202210.xlsx
+ [2022-10-26 16:11:42,678] INFO : End of DRP CICMTS run
+ [2022-11-28 12:23:21,115] INFO : DRP module CICMTS, version 0.2.3
+ [2022-11-28 12:23:21,116] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/db/drp-prod.db
+ [2022-11-28 12:23:21,122] INFO : starting data ingest
+ [2022-11-28 12:23:21,122] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/r_cicmts/data_in
+ [2022-11-28 12:23:21,124] INFO : ingesting file: comm-2211.csv
+ [2022-11-28 12:23:21,131] INFO : Count of added rows to Community: 0
+ [2022-11-28 12:23:21,134] INFO : Processed comm-2211.csv with 0 new rows added
+ [2022-11-28 12:23:21,135] INFO : moved comm-2211.csv to completed directory
+ [2022-11-28 12:23:21,135] INFO : ingesting file: coll-2211.csv
+ [2022-11-28 12:23:21,141] INFO : Count of added rows to Collection: 0
+ [2022-11-28 12:23:21,143] INFO : Processed coll-2211.csv with 0 new rows added
+ [2022-11-28 12:23:21,143] INFO : moved coll-2211.csv to completed directory
+ [2022-11-28 12:23:21,143] INFO : ingesting file: itct-2211.csv
+ [2022-11-28 12:23:21,154] INFO : moved itct-2211.csv to completed directory
+ [2022-11-28 12:23:21,155] INFO : Ingest complete
+ [2022-11-28 12:23:21,155] INFO : Starting report generation
+ [2022-11-28 12:23:21,222] INFO : created: dome-cicmts-202211.txt
+ [2022-11-28 12:23:21,231] INFO : created: dome-cicmts-202211.html
+ [2022-11-28 12:23:21,262] INFO : created report: dome-cicmts-202211.xlsx
+ [2022-11-28 12:23:21,314] INFO : End of DRP CICMTS run
+ [2022-12-26 16:29:35,589] INFO : DRP module CICMTS, version 0.2.3
+ [2022-12-26 16:29:35,590] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/db/drp-prod.db
+ [2022-12-26 16:29:35,596] INFO : starting data ingest
+ [2022-12-26 16:29:35,596] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022/dome-reports/r_cicmts/data_in
+ [2022-12-26 16:29:35,597] INFO : ingesting file: comm-2212.csv
+ [2022-12-26 16:29:35,603] INFO : Count of added rows to Community: 0
+ [2022-12-26 16:29:35,605] INFO : Processed comm-2212.csv with 0 new rows added
+ [2022-12-26 16:29:35,606] INFO : moved comm-2212.csv to completed directory
+ [2022-12-26 16:29:35,606] INFO : ingesting file: coll-2212.csv
+ [2022-12-26 16:29:35,614] INFO : Count of added rows to Collection: 3
+ [2022-12-26 16:29:35,615] INFO : Processed coll-2212.csv with 3 new rows added
+ [2022-12-26 16:29:35,615] INFO : moved coll-2212.csv to completed directory
+ [2022-12-26 16:29:35,616] INFO : ingesting file: itct-2212.csv
+ [2022-12-26 16:29:35,629] INFO : moved itct-2212.csv to completed directory
+ [2022-12-26 16:29:35,629] INFO : Ingest complete
+ [2022-12-26 16:29:35,629] INFO : Starting report generation
+ [2022-12-26 16:29:35,694] INFO : created: dome-cicmts-202212.txt
+ [2022-12-26 16:29:35,705] INFO : created: dome-cicmts-202212.html
+ [2022-12-26 16:29:35,735] INFO : created report: dome-cicmts-202212.xlsx
+ [2022-12-26 16:29:35,785] INFO : End of DRP CICMTS run
+ [2023-01-26 13:48:50,525] INFO : DRP module CICMTS, version 0.2.3
+ [2023-01-26 13:48:50,526] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-01-26 13:48:50,528] INFO : starting data ingest
+ [2023-01-26 13:48:50,528] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-01-26 13:48:50,529] INFO : ingesting file: comm-2301.csv
+ [2023-01-26 13:48:50,536] INFO : Count of added rows to Community: 0
+ [2023-01-26 13:48:50,538] INFO : Processed comm-2301.csv with 0 new rows added
+ [2023-01-26 13:48:50,539] INFO : moved comm-2301.csv to completed directory
+ [2023-01-26 13:48:50,539] INFO : ingesting file: coll-2301.csv
+ [2023-01-26 13:48:50,546] INFO : Count of added rows to Collection: 12
+ [2023-01-26 13:48:50,546] INFO : Processed coll-2301.csv with 12 new rows added
+ [2023-01-26 13:48:50,547] INFO : moved coll-2301.csv to completed directory
+ [2023-01-26 13:48:50,547] INFO : ingesting file: itct-2301.csv
+ [2023-01-26 13:48:50,557] INFO : moved itct-2301.csv to completed directory
+ [2023-01-26 13:48:50,557] INFO : Ingest complete
+ [2023-01-26 13:48:50,557] INFO : Starting report generation
+ [2023-01-26 13:48:50,610] INFO : created: dome-cicmts-202301.txt
+ [2023-01-26 13:48:50,616] INFO : created: dome-cicmts-202301.html
+ [2023-01-26 13:48:50,646] INFO : created report: dome-cicmts-202301.xlsx
+ [2023-01-26 13:48:50,684] INFO : End of DRP CICMTS run
+ [2023-02-27 13:10:14,271] INFO : DRP module CICMTS, version 0.2.3
+ [2023-02-27 13:10:14,272] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-02-27 13:10:14,277] INFO : starting data ingest
+ [2023-02-27 13:10:14,277] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-02-27 13:10:14,280] INFO : ingesting file: comm-2302.csv
+ [2023-02-27 13:10:14,287] INFO : Count of added rows to Community: 0
+ [2023-02-27 13:10:14,290] INFO : Processed comm-2302.csv with 0 new rows added
+ [2023-02-27 13:10:14,291] INFO : moved comm-2302.csv to completed directory
+ [2023-02-27 13:10:14,291] INFO : ingesting file: coll-2302.csv
+ [2023-02-27 13:10:14,303] INFO : Count of added rows to Collection: 12
+ [2023-02-27 13:10:14,304] INFO : Processed coll-2302.csv with 12 new rows added
+ [2023-02-27 13:10:14,305] INFO : moved coll-2302.csv to completed directory
+ [2023-02-27 13:10:14,305] INFO : ingesting file: itct-2302.csv
+ [2023-02-27 13:10:14,322] INFO : moved itct-2302.csv to completed directory
+ [2023-02-27 13:10:14,323] INFO : Ingest complete
+ [2023-02-27 13:10:14,323] INFO : Starting report generation
+ [2023-02-27 13:10:14,375] INFO : created: dome-cicmts-202302.txt
+ [2023-02-27 13:10:14,381] INFO : created: dome-cicmts-202302.html
+ [2023-02-27 13:10:14,413] INFO : created report: dome-cicmts-202302.xlsx
+ [2023-02-27 13:10:14,452] INFO : End of DRP CICMTS run
+ [2023-03-30 17:25:13,416] INFO : DRP module CICMTS, version 0.2.3
+ [2023-03-30 17:25:13,417] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-03-30 17:25:13,425] INFO : starting data ingest
+ [2023-03-30 17:25:13,425] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-03-30 17:25:13,428] INFO : ingesting file: comm-2303.csv
+ [2023-03-30 17:25:13,435] INFO : Count of added rows to Community: 0
+ [2023-03-30 17:25:13,437] INFO : Processed comm-2303.csv with 0 new rows added
+ [2023-03-30 17:25:13,437] INFO : moved comm-2303.csv to completed directory
+ [2023-03-30 17:25:13,437] INFO : ingesting file: coll-2303.csv
+ [2023-03-30 17:25:13,445] INFO : Count of added rows to Collection: 9
+ [2023-03-30 17:25:13,447] INFO : Processed coll-2303.csv with 9 new rows added
+ [2023-03-30 17:25:13,447] INFO : moved coll-2303.csv to completed directory
+ [2023-03-30 17:25:13,447] INFO : ingesting file: itct-2303.csv
+ [2023-03-30 17:25:13,462] INFO : moved itct-2303.csv to completed directory
+ [2023-03-30 17:25:13,463] INFO : Ingest complete
+ [2023-03-30 17:25:13,463] INFO : Starting report generation
+ [2023-03-30 17:25:13,558] INFO : created: dome-cicmts-202303.txt
+ [2023-03-30 17:25:13,577] INFO : created: dome-cicmts-202303.html
+ [2023-03-30 17:25:13,610] INFO : created report: dome-cicmts-202303.xlsx
+ [2023-03-30 17:25:13,655] INFO : End of DRP CICMTS run
+ [2023-04-30 20:21:20,478] INFO : DRP module CICMTS, version 0.2.3
+ [2023-04-30 20:21:20,480] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-04-30 20:21:20,485] INFO : starting data ingest
+ [2023-04-30 20:21:20,485] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-04-30 20:21:20,487] INFO : ingesting file: comm-2304.csv
+ [2023-04-30 20:21:20,494] INFO : Count of added rows to Community: 0
+ [2023-04-30 20:21:20,497] INFO : Processed comm-2304.csv with 0 new rows added
+ [2023-04-30 20:21:20,498] INFO : moved comm-2304.csv to completed directory
+ [2023-04-30 20:21:20,498] INFO : ingesting file: coll-2304.csv
+ [2023-04-30 20:21:20,510] INFO : Count of added rows to Collection: 0
+ [2023-04-30 20:21:20,512] INFO : Processed coll-2304.csv with 0 new rows added
+ [2023-04-30 20:21:20,513] INFO : moved coll-2304.csv to completed directory
+ [2023-04-30 20:21:20,513] INFO : ingesting file: itct-2304.csv
+ [2023-04-30 20:21:20,525] INFO : moved itct-2304.csv to completed directory
+ [2023-04-30 20:21:20,525] INFO : Ingest complete
+ [2023-04-30 20:21:20,526] INFO : Starting report generation
+ [2023-04-30 20:21:20,592] INFO : created: dome-cicmts-202304.txt
+ [2023-04-30 20:21:20,602] INFO : created: dome-cicmts-202304.html
+ [2023-04-30 20:21:20,643] INFO : created report: dome-cicmts-202304.xlsx
+ [2023-04-30 20:21:20,689] INFO : End of DRP CICMTS run
+ [2023-05-29 16:40:56,359] INFO : DRP module CICMTS, version 0.2.3
+ [2023-05-29 16:40:56,364] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-05-29 16:40:56,383] INFO : starting data ingest
+ [2023-05-29 16:40:56,384] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-05-29 16:40:56,389] INFO : ingesting file: comm-2305.csv
+ [2023-05-29 16:40:56,406] INFO : Count of added rows to Community: 0
+ [2023-05-29 16:40:56,408] INFO : Processed comm-2305.csv with 0 new rows added
+ [2023-05-29 16:40:56,409] INFO : moved comm-2305.csv to completed directory
+ [2023-05-29 16:40:56,409] INFO : ingesting file: coll-2305.csv
+ [2023-05-29 16:40:56,427] INFO : Count of added rows to Collection: 1
+ [2023-05-29 16:40:56,429] INFO : Processed coll-2305.csv with 1 new rows added
+ [2023-05-29 16:40:56,429] INFO : moved coll-2305.csv to completed directory
+ [2023-05-29 16:40:56,429] INFO : ingesting file: itct-2305.csv
+ [2023-05-29 16:40:56,443] INFO : moved itct-2305.csv to completed directory
+ [2023-05-29 16:40:56,443] INFO : Ingest complete
+ [2023-05-29 16:40:56,443] INFO : Starting report generation
+ [2023-05-29 16:40:56,616] INFO : created: dome-cicmts-202305.txt
+ [2023-05-29 16:40:56,706] INFO : created: dome-cicmts-202305.html
+ [2023-05-29 16:40:56,816] INFO : created report: dome-cicmts-202305.xlsx
+ [2023-05-29 16:40:56,893] INFO : End of DRP CICMTS run
+ [2023-06-26 09:58:56,719] INFO : DRP module CICMTS, version 0.2.3
+ [2023-06-26 09:58:56,721] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-06-26 09:58:56,731] INFO : starting data ingest
+ [2023-06-26 09:58:56,731] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-06-26 09:58:56,733] INFO : ingesting file: comm-2306.csv
+ [2023-06-26 09:58:56,741] INFO : Count of added rows to Community: 0
+ [2023-06-26 09:58:56,750] INFO : Processed comm-2306.csv with 0 new rows added
+ [2023-06-26 09:58:56,750] INFO : moved comm-2306.csv to completed directory
+ [2023-06-26 09:58:56,750] INFO : ingesting file: coll-2306.csv
+ [2023-06-26 09:58:56,758] INFO : Count of added rows to Collection: 0
+ [2023-06-26 09:58:56,760] INFO : Processed coll-2306.csv with 0 new rows added
+ [2023-06-26 09:58:56,760] INFO : moved coll-2306.csv to completed directory
+ [2023-06-26 09:58:56,760] INFO : ingesting file: itct-2306.csv
+ [2023-06-26 09:58:56,775] INFO : moved itct-2306.csv to completed directory
+ [2023-06-26 09:58:56,775] INFO : Ingest complete
+ [2023-06-26 09:58:56,775] INFO : Starting report generation
+ [2023-06-26 09:58:56,844] INFO : created: dome-cicmts-202306.txt
+ [2023-06-26 09:58:56,851] INFO : created: dome-cicmts-202306.html
+ [2023-06-26 09:58:56,882] INFO : created report: dome-cicmts-202306.xlsx
+ [2023-06-26 09:58:56,941] INFO : End of DRP CICMTS run
+ [2023-08-18 17:28:18,083] INFO : DRP module CICMTS, version 0.2.3
+ [2023-08-18 17:28:18,084] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-08-18 17:28:18,088] INFO : starting data ingest
+ [2023-08-18 17:28:18,088] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-08-18 17:28:18,089] INFO : ingesting file: comm-2307.csv
+ [2023-08-18 17:28:18,094] INFO : Count of added rows to Community: 0
+ [2023-08-18 17:28:18,097] INFO : Processed comm-2307.csv with 0 new rows added
+ [2023-08-18 17:28:18,097] INFO : moved comm-2307.csv to completed directory
+ [2023-08-18 17:28:18,097] INFO : ingesting file: coll-2307.csv
+ [2023-08-18 17:28:18,102] INFO : Count of added rows to Collection: 0
+ [2023-08-18 17:28:18,103] INFO : Processed coll-2307.csv with 0 new rows added
+ [2023-08-18 17:28:18,103] INFO : moved coll-2307.csv to completed directory
+ [2023-08-18 17:28:18,103] INFO : ingesting file: itct-2307.csv
+ [2023-08-18 17:28:18,117] INFO : moved itct-2307.csv to completed directory
+ [2023-08-18 17:28:18,117] INFO : Ingest complete
+ [2023-08-18 17:28:18,117] INFO : Starting report generation
+ [2023-08-18 17:28:18,190] INFO : created: dome-cicmts-202308.txt
+ [2023-08-18 17:28:18,200] INFO : created: dome-cicmts-202308.html
+ [2023-08-18 17:28:18,233] INFO : created report: dome-cicmts-202308.xlsx
+ [2023-08-18 17:28:18,287] INFO : End of DRP CICMTS run
+ [2023-08-28 17:13:16,681] INFO : DRP module CICMTS, version 0.2.3
+ [2023-08-28 17:13:16,682] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-08-28 17:13:16,690] INFO : starting data ingest
+ [2023-08-28 17:13:16,690] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-08-28 17:13:16,692] INFO : ingesting file: comm-2308.csv
+ [2023-08-28 17:13:16,698] INFO : Count of added rows to Community: 0
+ [2023-08-28 17:13:16,701] INFO : Processed comm-2308.csv with 0 new rows added
+ [2023-08-28 17:13:16,702] INFO : moved comm-2308.csv to completed directory
+ [2023-08-28 17:13:16,702] INFO : ingesting file: coll-2308.csv
+ [2023-08-28 17:13:16,708] INFO : Count of added rows to Collection: 1
+ [2023-08-28 17:13:16,709] INFO : Processed coll-2308.csv with 1 new rows added
+ [2023-08-28 17:13:16,709] INFO : moved coll-2308.csv to completed directory
+ [2023-08-28 17:13:16,709] INFO : ingesting file: itct-2308.csv
+ [2023-08-28 17:13:16,727] INFO : moved itct-2308.csv to completed directory
+ [2023-08-28 17:13:16,727] INFO : Ingest complete
+ [2023-08-28 17:13:16,727] INFO : Starting report generation
+ [2023-08-28 17:13:16,786] INFO : created: dome-cicmts-202308.txt
+ [2023-08-28 17:13:16,795] INFO : created: dome-cicmts-202308.html
+ [2023-08-28 17:13:16,829] INFO : created report: dome-cicmts-202308.xlsx
+ [2023-08-28 17:13:16,910] INFO : End of DRP CICMTS run
+ [2023-09-25 15:50:55,381] INFO : DRP module CICMTS, version 0.2.3
+ [2023-09-25 15:50:55,384] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-09-25 15:50:55,405] INFO : starting data ingest
+ [2023-09-25 15:50:55,405] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-09-25 15:50:55,408] INFO : ingesting file: comm-2309.csv
+ [2023-09-25 15:50:55,422] INFO : Count of added rows to Community: 0
+ [2023-09-25 15:50:55,425] INFO : Processed comm-2309.csv with 0 new rows added
+ [2023-09-25 15:50:55,426] INFO : moved comm-2309.csv to completed directory
+ [2023-09-25 15:50:55,426] INFO : ingesting file: coll-2309.csv
+ [2023-09-25 15:50:55,434] INFO : Count of added rows to Collection: 0
+ [2023-09-25 15:50:55,435] INFO : Processed coll-2309.csv with 0 new rows added
+ [2023-09-25 15:50:55,435] INFO : moved coll-2309.csv to completed directory
+ [2023-09-25 15:50:55,435] INFO : ingesting file: itct-2309.csv
+ [2023-09-25 15:50:55,453] INFO : moved itct-2309.csv to completed directory
+ [2023-09-25 15:50:55,453] INFO : Ingest complete
+ [2023-09-25 15:50:55,453] INFO : Starting report generation
+ [2023-09-25 15:50:55,535] INFO : created: dome-cicmts-202309.txt
+ [2023-09-25 15:50:55,543] INFO : created: dome-cicmts-202309.html
+ [2023-09-25 15:50:55,581] INFO : created report: dome-cicmts-202309.xlsx
+ [2023-09-25 15:50:55,642] INFO : End of DRP CICMTS run
+ [2023-10-25 15:27:26,396] INFO : DRP module CICMTS, version 0.2.3
+ [2023-10-25 15:27:26,397] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-10-25 15:27:26,404] INFO : starting data ingest
+ [2023-10-25 15:27:26,404] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-10-25 15:27:26,406] INFO : ingesting file: comm-2310.csv
+ [2023-10-25 15:27:26,409] INFO : Count of added rows to Community: 0
+ [2023-10-25 15:27:26,411] INFO : Processed comm-2310.csv with 0 new rows added
+ [2023-10-25 15:27:26,411] INFO : moved comm-2310.csv to completed directory
+ [2023-10-25 15:27:26,412] INFO : ingesting file: coll-2310.csv
+ [2023-10-25 15:27:26,413] INFO : Count of added rows to Collection: 0
+ [2023-10-25 15:27:26,416] INFO : Processed coll-2310.csv with 0 new rows added
+ [2023-10-25 15:27:26,417] INFO : moved coll-2310.csv to completed directory
+ [2023-10-25 15:27:26,417] INFO : ingesting file: itct-2310.csv
+ [2023-10-25 15:27:26,444] INFO : moved itct-2310.csv to completed directory
+ [2023-10-25 15:27:26,444] INFO : Ingest complete
+ [2023-10-25 15:27:26,444] INFO : Starting report generation
+ [2023-10-25 15:27:26,523] INFO : created: dome-cicmts-202310.txt
+ [2023-10-25 15:27:26,533] INFO : created: dome-cicmts-202310.html
+ [2023-10-25 15:27:26,573] INFO : created report: dome-cicmts-202310.xlsx
+ [2023-10-25 15:27:26,640] INFO : End of DRP CICMTS run
+ [2023-11-28 12:50:19,280] INFO : DRP module CICMTS, version 0.2.3
+ [2023-11-28 12:50:19,281] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-11-28 12:50:19,285] INFO : starting data ingest
+ [2023-11-28 12:50:19,285] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-11-28 12:50:19,287] INFO : ingesting file: comm-2311.csv
+ [2023-11-28 12:50:19,293] INFO : Count of added rows to Community: 0
+ [2023-11-28 12:50:19,300] INFO : Processed comm-2311.csv with 0 new rows added
+ [2023-11-28 12:50:19,300] INFO : moved comm-2311.csv to completed directory
+ [2023-11-28 12:50:19,300] INFO : ingesting file: coll-2311.csv
+ [2023-11-28 12:50:19,305] INFO : Count of added rows to Collection: 0
+ [2023-11-28 12:50:19,307] INFO : Processed coll-2311.csv with 0 new rows added
+ [2023-11-28 12:50:19,307] INFO : moved coll-2311.csv to completed directory
+ [2023-11-28 12:50:19,307] INFO : ingesting file: itct-2311.csv
+ [2023-11-28 12:50:19,321] INFO : moved itct-2311.csv to completed directory
+ [2023-11-28 12:50:19,321] INFO : Ingest complete
+ [2023-11-28 12:50:19,321] INFO : Starting report generation
+ [2023-11-28 12:50:19,393] INFO : created: dome-cicmts-202311.txt
+ [2023-11-28 12:50:19,403] INFO : created: dome-cicmts-202311.html
+ [2023-11-28 12:50:19,444] INFO : created report: dome-cicmts-202311.xlsx
+ [2023-11-28 12:50:19,501] INFO : End of DRP CICMTS run
+ [2023-12-22 16:21:13,194] INFO : DRP module CICMTS, version 0.2.3
+ [2023-12-22 16:21:13,195] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2023-12-22 16:21:13,203] INFO : starting data ingest
+ [2023-12-22 16:21:13,203] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2023-12-22 16:21:13,205] INFO : ingesting file: comm-2312.csv
+ [2023-12-22 16:21:13,216] INFO : Count of added rows to Community: 0
+ [2023-12-22 16:21:13,221] INFO : Processed comm-2312.csv with 0 new rows added
+ [2023-12-22 16:21:13,222] INFO : moved comm-2312.csv to completed directory
+ [2023-12-22 16:21:13,222] INFO : ingesting file: coll-2312.csv
+ [2023-12-22 16:21:13,247] INFO : Count of added rows to Collection: 0
+ [2023-12-22 16:21:13,248] INFO : Processed coll-2312.csv with 0 new rows added
+ [2023-12-22 16:21:13,248] INFO : moved coll-2312.csv to completed directory
+ [2023-12-22 16:21:13,248] INFO : ingesting file: itct-2312.csv
+ [2023-12-22 16:21:13,259] INFO : moved itct-2312.csv to completed directory
+ [2023-12-22 16:21:13,259] INFO : Ingest complete
+ [2023-12-22 16:21:13,259] INFO : Starting report generation
+ [2023-12-22 16:21:13,345] INFO : created: dome-cicmts-202312.txt
+ [2023-12-22 16:21:13,359] INFO : created: dome-cicmts-202312.html
+ [2023-12-22 16:21:13,403] INFO : created report: dome-cicmts-202312.xlsx
+ [2023-12-22 16:21:13,459] INFO : End of DRP CICMTS run
+ [2024-01-25 17:19:48,932] INFO : DRP module CICMTS, version 0.2.3
+ [2024-01-25 17:19:48,933] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2024-01-25 17:19:48,947] INFO : starting data ingest
+ [2024-01-25 17:19:48,947] INFO : ingest file dir: /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/r_cicmts/data_in
+ [2024-01-25 17:19:48,949] INFO : ingesting file: comm-2401.csv
+ [2024-01-25 17:19:48,964] INFO : Count of added rows to Community: 0
+ [2024-01-25 17:19:48,967] INFO : Processed comm-2401.csv with 0 new rows added
+ [2024-01-25 17:19:48,968] INFO : moved comm-2401.csv to completed directory
+ [2024-01-25 17:19:48,968] INFO : ingesting file: coll-2401.csv
+ [2024-01-25 17:19:48,975] INFO : Count of added rows to Collection: 0
+ [2024-01-25 17:19:48,978] INFO : Processed coll-2401.csv with 0 new rows added
+ [2024-01-25 17:19:48,978] INFO : moved coll-2401.csv to completed directory
+ [2024-01-25 17:19:48,978] INFO : ingesting file: itct-2401.csv
+ [2024-01-25 17:19:48,998] INFO : moved itct-2401.csv to completed directory
+ [2024-01-25 17:19:48,998] INFO : Ingest complete
+ [2024-01-25 17:19:48,998] INFO : Starting report generation
+ [2024-01-26 18:17:20,768] INFO : DRP module CICMTS, version 0.2.3
+ [2024-01-26 18:29:26,825] INFO : DRP module CICMTS, version 0.2.3
+ [2024-01-26 18:29:26,826] ERROR : option --skip-ingest not recognized
+ [2024-01-26 18:29:48,092] INFO : DRP module CICMTS, version 0.2.3
+ [2024-01-26 18:29:48,094] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2024-01-26 18:29:48,101] INFO : Skipping data ingest
+ [2024-01-26 18:29:48,101] INFO : Starting report generation
+ [2024-01-26 18:40:16,016] INFO : DRP module CICMTS, version 0.2.3
+ [2024-01-26 18:40:16,016] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2024-01-26 18:40:16,017] INFO : Skipping data ingest
+ [2024-01-26 18:40:16,017] INFO : Starting report generation
+ [2024-01-26 20:23:32,669] INFO : DRP module CICMTS, version 0.2.3
+ [2024-01-26 20:23:32,671] INFO : Using database file /Users/carlj/Developer/Dome/DomeReports-2022_2023/dome-reports/db/drp-prod.db
+ [2024-01-26 20:23:32,675] INFO : Skipping data ingest
+ [2024-01-26 20:23:32,675] INFO : Starting report generation
+ [2024-01-26 20:23:32,759] INFO : created: dome-cicmts-202401.txt
+ [2024-01-26 20:23:32,768] INFO : created: dome-cicmts-202401.html
+ [2024-01-26 20:23:32,800] INFO : created report: dome-cicmts-202401.xlsx
+ [2024-01-26 20:23:32,847] INFO : End of DRP CICMTS run

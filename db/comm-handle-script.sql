@@ -1,0 +1,14 @@
+UPDATE Community SET handle = '1721.3/33655' WHERE uuid = 'b8cb6a38-248f-4817-899c-458bcf16986d';
+UPDATE Community SET handle = '1721.3/36880' WHERE uuid = '28f35db9-ecd5-478f-9dd0-b2fd8b8d5ba3';
+UPDATE Community SET handle = '1721.3/37455' WHERE uuid = 'dda5a985-5b59-4d6f-9e25-beb239f0dcfc';
+UPDATE Community SET handle = '1721.3/48000' WHERE uuid = '2cb99bd8-efae-427b-82f5-349fb8943e76';
+UPDATE Community SET handle = '1721.3/188938' WHERE uuid = 'a703e5d9-a7e9-4cd3-aca7-c7edba2233d8';
+UPDATE Community SET handle = '1721.3/58930' WHERE uuid = '58828528-545f-4827-8c43-3f863b43f280';
+UPDATE Community SET handle = '1721.3/74802' WHERE uuid = '17163cf2-9241-4650-bfa5-4b3343b074e5';
+UPDATE Community SET handle = '1721.3/1' WHERE uuid = 'c7504f72-f074-4ada-8245-52639f16a9c3';
+UPDATE Community SET handle = '1721.3/82821' WHERE uuid = 'c7f4dcf9-81fb-4b82-a4f9-3722b6adc3dc';
+UPDATE Community SET handle = '1721.3/129916' WHERE uuid = '385930d9-6071-47ee-9e06-6556227253b5';
+UPDATE Community SET handle = '1721.3/148788' WHERE uuid = '09969ff8-da37-4ef3-8190-33de941ed952';
+UPDATE Community SET handle = '1721.3/173541' WHERE uuid = '5790951e-31c4-4e89-a8fb-7f34a246d043';
+UPDATE Community SET handle = '1721.3/176482' WHERE uuid = '07278c2f-16d3-4a75-8053-ff92988324bf';
+UPDATE Community SET handle = '1721.3/189263' WHERE uuid = '96103c9b-78ae-487e-830a-25d6a82fc183';

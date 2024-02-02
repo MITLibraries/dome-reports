@@ -35,14 +35,14 @@ def get_config():
                                    'itct-????.csv'),
 
         skip_output = False,
-        rpt_formats = shared.ReportFormats(SCREEN = True, ASCII = True),
+        rpt_formats = shared.ReportFormats(SCREEN = True, ASCII = True, XLSX = True, HTML = True),
         rpt_year = datetime.now().year,
         rpt_fullname = 'Monthly Collections Item Counts Time Series',
         rpt_basename = 'dome-cicmts',
 
         drp_dirpath = DRP_PATH,
         shared_dirpath = DRP_PATH / 'shared',
-        db_filepath = DRP_PATH / 'db' / 'drp.db',
+        db_filepath = DRP_PATH / 'db' / 'drp-prod.db',
 
         rpt_dirpath = RPT_PATH,
         data_in_dirpath = RPT_PATH / 'data_in',
