@@ -1,3 +1,4 @@
+
 # CICAH - Collection Item Counts Ad Hoc Report
 # The item count status at one moment in time
 
@@ -169,9 +170,8 @@ def generate_reports(coll_rows, itct_filepath, field_sep, fmts,
     df.sort_index(inplace=True)
 
     #add column total
-    sums =  df.sum(numeric_only=True, axis=0)   #this is a Series
-    sums.name = ("Total", "")
-    df = df.append(sums)
+    sums = ptable.sum(numeric_only=True)
+    df.loc['Total'] = pd.Series(sums)
 
     now = datetime.now()
     stem = f"{rpt_basename}-{now.strftime('%Y%m%d')}"
@@ -184,3 +184,4 @@ def generate_reports(coll_rows, itct_filepath, field_sep, fmts,
 
 if __name__ == "__main__":
     main((argv[1:]))
+

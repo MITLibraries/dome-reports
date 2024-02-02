@@ -316,11 +316,9 @@ def get_data_frame(itct_rows):
     #get array of corresponding months
     ptable.columns = [calendar.month_abbr[i] for i in ar_mo_int]
 
-    #add column totals
-    sums =  ptable.sum(numeric_only=True, axis=0)   #this is a Series
-    sums.name = ("Totals", "")
-
-    ptable = ptable.append(sums)    #inefficient
+    #Monthly totals across all collections
+    sums = ptable.sum(numeric_only=True)
+    ptable.loc['Totals'] = pd.Series(sums)
 
     logging.debug(f"Dimensions of pivot table: {ptable.shape}")
 

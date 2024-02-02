@@ -4,6 +4,9 @@
 
 The 'Dome Reporting Project' (DRP) is a commandline application for generating descriptive content reports for the digital collections in Dome, the **dome.mit.edu** repository, an implementation of DSpace6.x.  Usage reports are not included.  Data is obtained by querying the underlying Postgres database for Dome on a monthly basis.  The resulting field-delimited files are transferred to the local reporting workstation where the data is imported into an ongoing SQLite database which contains additional back-end management data for the Dome reports. The monthly shapshots support viewing changes over time. The content reports are then rendered in various formats (HTML, XLSX, ASCII, MARKDOWN, TXT).  DRP is a Python 3 application with development managed through GitHub.  This project is covered by the MIT license.
 
+DRP version 0.3 is very similar to v.0.2.  It accomodates changes in the
+Pandas library when writing the writing the row of monthly totals.  It provides no new features.
+
 #### An Operations and Data Flow Diagram
 
 [Diagram for the Dome Reports process] (docs/automation-workflow.png)
@@ -15,7 +18,7 @@ SQL queries are run against the Postgres database on a separate server as specif
 Currently, the local reporting workstation is a Mac running OS X and requires the following software:
 
     - The System shell is **zsh**.
-    - Python 3.9.x or higher with libraries:  sqlite, pandas, numpy
+    - Python 3.11.x or higher with libraries:  sqlite, pandas, numpy
     - SQLite3 database (included in Python 3.7+, but is installed separately for optional non-Python access)
 
       For Excel spreadsheet support in pandas, the following may be required:
@@ -26,28 +29,29 @@ Currently, the local reporting workstation is a Mac running OS X and requires th
 Setup instructions summary for a working/production installation
 
   1.  Download the project from GitHub into a new directory, e.g. 'drp'
-  2.  Install or confirm Python 3.7 or higher, preferred: 3.9
+  2.  Install or confirm Python 3.11 or higher, preferred: 3.11
+      Install or confirm Pandas 2.2.x or higher
   3.  Create a Python virtual environment with the libraries listed in the requirements.txt file
   4.  In the drp/db subdirectory, run the SQL initialization script 'db-ddl.sql' to create a new database with empty tables, either using a standalone SQLite at the command line as in: 
-```
-(ve395) $> sqlite3 drp.db < db-ddl.sql
-```
-or using the one in Python.  Change the name as needed, e.g. to 'test.db' for initial tests. 
-Or, if upgrading from the previous version, copy the old database file(s) to the new db/ directory.
+      ```
+      (ve311) $> sqlite3 drp.db < db-ddl.sql
+      ```
+      or using the one in Python.  Change the name as needed, e.g. to 'test.db' for initial tests. 
+      Or, if upgrading from the previous version, copy the old database file(s) to the new db/ directory.
   5.  For the reports to be used, edit the config.py file in the reports' subdirectories.
-    Create the data subdirectories that correspond to the names in the config file.
+    Create the data subdirectories that correspond to the names in the config file.  Defaults have not been provided since Git doesn't allow empty directories.
 
 #### Application directory structure
 
-The directory structure for v0.2 is significantly different from the previous version and should be created separately.  The SQLite3 database from the previous version can (or should) be copied over to the new DRP location.
+The directory structure for v.0.3 is the same as in v.0.2 from the previous version.  The SQLite3 database from the previous version can (or should) be copied over to the new DRP location as needed.
 
-Downloading or cloning the GitHub project to a local directory can serve as the top level working directory for the application.  However, it is probably best to separate any application development from performing production reporting. Note that the directory setup has changed in v.0.2.
+Downloading or cloning the GitHub project to a local directory can serve as the top level working directory for the application.  However, it is probably best to separate any application development from performing production reporting. Note that the directory setup has not changed in v.0.3.
 
 It is recommended to use a Python virtual environment.  The virtual environment can exist inside or outside the project directory.  However, once created it should not be moved to another location on the filesystem. The list of required libraries "requirements.txt" is included in the top level DRP directory.
 
 The top level directory:
 ```
-        drp_2.x                  # the name can vary
+        drp_3.x                  # the name can vary
         ├──db/                   # SQLite3 database(s)
         ├──docs/
         ├──postgres/             # shell scripts for querying the Postgres database
@@ -57,7 +61,7 @@ The top level directory:
         ├──shared/               # common python code and configuration shared across reports
         ├──
         └── tmp/                  # as needed
-        venv3.9
+        venv3.11
 ```
 
 The local SQLite database is central and shared across the various reports.
@@ -103,7 +107,7 @@ It is recommended to use a Python virtual environment with the appropriate libra
 
 At the commandline, a report can be run from any directly that specifies the correct path to the report Python .py file.  It would be typical to run a report from the main project directory, e.g. as:
 
-(venv395) $> python3.9 ./r_cicmts/cicmts.py
+(ve311) $> python3.11 ./r_cicmts/cicmts.py
 
 Commandline arguments can vary by report.  Most of these override a configuration option, so typically will
 not be needed for routine reporting.  An example where this might be useful would be where an additional
@@ -181,6 +185,13 @@ In the event of an ingest error, this table can be edited to allow for a repeat.
 SQLite3 does not support an ENUM datatype, but formats can suffice for now as a string of single-letter codes to designate the formats:
 a - ASCII text; c - CSV; h - HTML; m - Markdown; x - XlSX (Excel).  For example:  'hx'.
 
+## Tests
+The tests/ subdirectory contains test data.
+
+The script test_data.sql is to be run directly by SQLite3 and loads initial community and collection entities as well as item counts for Jan to Apr of 2021.
+
+The .csv files are test data files used for simulating monthly loads and cover May to Dec of 2021.  Note that the Dec files introduce a new collection.  To run reports on this data, it is necessary to change the year to 2021 in the report's config.py file. 
+
 ## Reports
 
 ###Report #1: CICTMS - Collection Item Count Monthly Time Series
@@ -221,18 +232,13 @@ After running the Postgres queries for the current month,
 
 At the commandline, a report can be run from any directly that specifies the correct path to the report Python .py file.  It would be typical to run a report from the main project directory, e.g. as:
 
-(venv395) $> python3.9 ./r_cicmts/cicmts.py
+(venv311) $> python3.11 ./r_cicmts/cicmts.py
 
 Most of these override a configuration option, so typically will
 not be needed for routine reporting.  An example where this might be useful would be where an additional
 report file needs to be generated in a different format from that specified in configuration.  In this case, one can suppress the data file ingest and specify the output format with the arguments "-k -fa".
 
 The commandline help text can be displayed with the argument "-h"
-
-Command line usage: 
-```
-  python3 python3 cicmts.py 
-```
 
 Available option parameters: (None of these is required)
 ```
@@ -257,7 +263,7 @@ where the formats for option 'f' are:
 
   example:
 ```
-   python3 cicmts.py -fas -d/path/to/test.db -o./tests
+   (ve311> $>python311 r_cicmts/cicmts.py -fas -d/path/to/test.db -o./tests
 ```
 
 The cicmts.py report script is for reporting once a month.  It will return an error if item count data for a given month is repeated.  In case of correcting errors, the old data will need to be removed manually.  And for reusing the data files from Postgres, the FilesProcessed table will need to be manually edited.  It is possible to skip months which will result in fewer columns in the output reports.
@@ -271,11 +277,11 @@ After running the Postgres queries for the current month,
 
 At the commandline, a report can be run from any directly that specifies the correct path to the report Python .py file.  It would be typical to run a report from the main project directory, e.g. as:
 
-(venv395) $> python3.9 ./r_cicah/cicah.py
+(venv311) $> python3.11 ./r_cicah/cicah.py
 
 Commandline usage:
 ```
-     python3 /path/to/rpt_cicah.py
+     (ve311) $>python311 /path/to/rpt_cicah.py
 ```
 Available option parameters: (None of these is required)
 ```
